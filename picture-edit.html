@@ -24,6 +24,7 @@
 		<![endif]-->
 <link href="Widget/icheck/icheck.css" rel="stylesheet" type="text/css" />
 <link href="Widget/webuploader/0.1.5/webuploader.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="myCss/picture-edit.css" />
 
 <title>编辑商品</title>
 
@@ -81,34 +82,40 @@
 			 <div class="formControls col-2"><input type="text" class="input-text" :value="product.brand"></div>
 			</div>
              <div class="Add_p_s">
-             <label class="form-label col-2">产品重量：</label>	
-			 <div class="formControls col-2"><input type="text" class="input-text" :value="product.productWeight">kg</div>
-			</div>
-             <div class="Add_p_s">
-             <label class="form-label col-2">单位：</label>	
-			 <div class="formControls col-2"><span class="select-box">
-				<select class="select">
-					<option>请选择</option>
-					<option :value='1' v-if="product.unit === '1'" selected >件</option>
-					<option :value='1' v-else >件</option>
-					<option :value='2' v-if="product.unit === '2'" selected >斤</option>
-					<option :value='2' v-else >斤</option>
-					<option :value='3' v-if="product.unit === '3'" selected >千克</option>
-					<option :value='3' v-else >千克</option>
-					<option :value='4' v-if="product.unit === '4'" selected >吨</option>
-					<option :value='4' v-else >吨</option>
-					<option :value='5' v-if="product.unit === '5'" selected >套</option>
-					<option :value='5' v-else >套</option>
-				</select>
-				</span></div>
+             <label class="form-label col-2">重&nbsp;&nbsp;&nbsp;&nbsp;量：</label>	
+			 <div class="formControls col-2"><input type="text" class="input-text" :value="product.productWeight">g</div>
 			</div>
             <div class="Add_p_s">
-             <label class="form-label col-2">现价：</label>	
-			 <div class="formControls col-2"><input type="text" class="input-text" :value="product.nowPrice">元</div>
+             <label class="form-label col-2">押&nbsp;&nbsp;&nbsp;&nbsp;金：</label>	
+			 <div class="formControls col-2"><input type="text" class="input-text" :value="product.deposit">元</div>
 			</div>
-            <div class="Add_p_s">
-             <label class="form-label col-2">原价：</label>	
-			 <div class="formControls col-2"><input type="text" class="input-text" :value="product.originalPrice">元</div>
+            <div class="Add_p_s" style="width: 300px;">
+             <label class="form-label col-2">租&nbsp;&nbsp;&nbsp;&nbsp;价：</label>	
+			 <div class="formControls col-2"><input type="text" class="input-text" :value="product.rentPrice" style="width: 120.35px;">元/天</div>
+			</div>
+			<div class="Add_p_s" style="width: 239.5px;">
+			 <label class="form-label col-2">成&nbsp;&nbsp;&nbsp;&nbsp;色：</label>	
+			 <div class="formControls col-2"><input type="text" class="input-text" :value="product.quality" style="width: 120.35px;"></div>
+			</div>
+			<div class="Add_p_s">
+				<label class="form-label col-2">类&nbsp;&nbsp;&nbsp;&nbsp;别：</label>	
+				<div class="formControls col-2">
+					<span class="select-box">
+						<select class="select">
+							<option>请选择</option>
+							<option value="1" v-if="product.category != '1'">手机</option>
+							<option value="1" v-else selected >手机</option>
+							<option value="2" v-if="product.category != '2'">电脑</option>
+							<option value="2" v-else selected >电脑</option>
+							<option value="3" v-if="product.category != '3'">相机</option>
+							<option value="3" v-else selected >相机</option>
+						</select>
+					</span>
+				</div>
+			</div>
+			<div class="Add_p_s" style="width: 300px;">
+			 <label class="form-label col-2">库&nbsp;&nbsp;&nbsp;&nbsp;存：</label>	
+			 <div class="formControls col-2"><input type="text" class="input-text" :value="product.stock" style="width: 120.35px;">件</div>
 			</div>
 		</div>
 		
@@ -128,27 +135,18 @@
 		
 		<div class="clearfix cl">
 			<label class="form-label col-2">图片上传：</label>  
-			<div class="formControls col-10">
-				<div class="uploader-list-container"> 
-					<!-- 图片上传 -->
-					<div class="row">
-						<!-- 图片 -->
-						<div class="col-xs-6 col-md-3" v-for="picture in product.pictures">
-							<a href="#" class="thumbnail">
-							  <img :src="picture.pictureUrl"><label for="headFile"></label></img>
-							  <input type="file" />
-							  <input type="text" value="0" style="display: none;">
-							</a>					
-						</div>
+			<!-- 图片区域 -->
+			<div class="uploadPicture">
+				<div class="productImg" v-for="picture,index in product.pictures">
+					<div class="productImg_div">
+						<img src="images/commodityLogo.png">
 					</div>
-				</div>
+				</div>	
 			</div>
-			<input type="file" />
 		<div class="clearfix cl">
 			<div class="Button_operation">
 				<button onClick="article_save_submit();" class="btn btn-primary radius" type="button"><i class="icon-save "></i>保存并提交审核</button>
-				<button onClick="article_save();" class="btn btn-secondary  btn-warning" type="button"><i class="icon-save"></i>保存草稿</button>
-				<button onClick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+				<button onClick="article_save();" class="btn btn-secondary  btn-warning" type="button"><i class="icon-save"></i>上传图片</button>
 			</div>
 		</div>
 	</form>

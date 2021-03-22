@@ -9,21 +9,18 @@ $(function(){
 				originPlace : '湖南/长沙', // 产地
 				material : '塑料/金属', // 材质
 				brand : 'Redmi', // 品牌
-				productWeight : '100g', // 商品重量
-				unit : '1', // 单位
-				nowPrice : '4999', // 现价
-				originalPrice : '5999', // 原价
+				productWeight : '100', // 商品重量
+				deposit : '4999', // 押金
+				rentPrice : '5999', // 租金
+				quality : '九成新', // 成色
+				category : '2',
+				stock : '456',
 				keyWords : '红米k40', // 关键字
 				introduction : '此为最新款红米手机,搭载了xx处理器', // 介绍
 				pictures : [
 					{pictureUrl : 'images/239961.jpg'},
 					{pictureUrl : 'images/239961.jpg'},
 					{pictureUrl : 'images/239961.jpg'},
-					{pictureUrl : 'images/commodityLogo.png'},
-					{pictureUrl : 'images/commodityLogo.png'},
-					{pictureUrl : 'images/commodityLogo.png'},
-					{pictureUrl : 'images/commodityLogo.png'},
-					{pictureUrl : 'images/commodityLogo.png'}
 				] // 图片
 			}
 		},

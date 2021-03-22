@@ -79,7 +79,18 @@ $(function(){
 					expireTime : '2016-7-8', // 租界商品到期时间
 					category : '食品', // 商品类型
 					status : '6' // 订单状态 6代表租家待评论
-				}
+				},
+				{
+					orderId : '9875656232211111', // 订单编号
+					productTitle : '【下拉入会享更高优惠】vivo iQOO U3新品5G大电池学生游戏手机官方旗舰店官网正品爱酷vivoiqoou3 vivou3', // 商品名称
+					totalPrice : '985256.12', // 总价
+					unitPrice : '56656', // 单天价格
+					num : '9542', // 租借天数
+					orderTime : '2017-11-8', //订单创建时间  
+					expireTime : '2019-2-28', // 租界商品到期时间
+					category : '食品', // 商品类型
+					status : '7' // 订单状态 7代表租家已买断
+				},
 			]
 		},
 		methods : {
