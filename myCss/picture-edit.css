@@ -1,27 +1,55 @@
 .uploadPicture{
 	width: 90%;
-	height: 700px;
+	height: auto;
 	float: left;
 	margin-left: 10px;
 	/* background-color: #0000CC; */
 }
 
 .productImg{
-	width: 20%;
+	width: 100%;
 	height: 50%;
-	float: left;
+	
 	/* background-color: pink; */
 }
 
 .productImg_div{
-	width: 99%;
-	height: 99%;
+	width: 100%;
+	height: 100%;
 	border: 5px #EFEFEF solid;
 	border-radius: 5px;
 }
 
-.productImg_div > img{
+.productImg_div > label{
 	width: 100%;
 	height: 100%;
 	flex-shrink: 100%;
+	cursor: pointer;
+}
+
+.productImg_div > label > img{
+	width: 100%;
+	height: 100%;
+	flex-shrink: 100%;
+}
+
+.productDelete{
+	width: 88.5%;
+	height: 30px;
+	margin-top: -30px;
+	background-color: #000000;
+	opacity: 0.5;
+	position: absolute;
+	cursor: pointer;
+	text-align: center;
+}
+
+.productDelete > div{
+	font-size: large;
+	cursor: pointer;
+	color: white;
+}
+
+.productDelete > div:hover{
+	color: red;
 }

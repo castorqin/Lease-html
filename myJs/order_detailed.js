@@ -1,7 +1,23 @@
 $(function(){
-	let pictureEdit = new Vue({
-		el : '#add_picture',
+	let orderDetailed = new Vue({
+		el : '#orderDetailed',
 		data : {
+			order : {
+				orderId : 'NJHDXJ201509-001', // 订单编号
+				receiverName : 'doinb', // 收货人姓名
+				receiverPhone : '16543432343', // 收货人电话
+				postalCode : '411423', // 收件地邮编
+				receiveAddress : '湖南省张家界市永定区吉首大学张家界校区图书馆', // 收件地址
+				payment : '在线支付', // 支付方式
+				status : '0', // 订单状态
+				orderTime : '', // 订单创建时间
+				expireTime : '', // 订单过期时间
+				deposit : '223', // 定金
+				unitPrice : '345', // 单天价格
+				num : '60', // 租借天数
+				// totalPrice : this.deposit + this.unitPrice * this.num,
+				courier : '圆通快递' // 快递
+			},
 			product : {
 				productTitle : '红米k40 pro 512G 12G', // 商品详细名称
 				shortTitle : '红米k40', // 商品简略名称
@@ -22,29 +38,6 @@ $(function(){
 					{pictureUrl : 'images/239961.jpg', pictureId : '987654'},
 					{pictureUrl : 'images/239961.jpg', pictureId : '456321'},
 				] // 图片
-			}
-		},
-		methods : {
-			selectPicture(){
-				flag = $("#flag")
-				var file = event.target.files[0];
-				// 确认选择的文件是图片
-				if(null != file && file.type.indexOf("image") == 0) {
-				    var reader = new FileReader()
-				    reader.readAsDataURL(file)
-				    reader.onload = function() {
-				        // 图片base64化
-				        var newUrl = this.result
-				        $("#head_img").prop("src", newUrl)
-						if(flag.val() === "0"){
-							flag.val("1")
-						}
-				    }
-				}
-			},
-			deletePicture(id){
-				alert(id)
-				$('#' + id).remove()
 			}
 		}
 	})

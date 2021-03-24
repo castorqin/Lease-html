@@ -28,11 +28,6 @@
 
 <title>编辑商品</title>
 
-<style type="text/css">
-	.commodityPictures{
-		cursor: pointer;
-	}
-</style>
 </head>
 <body>
 <div class="clearfix" id="add_picture">
@@ -137,11 +132,42 @@
 			<label class="form-label col-2">图片上传：</label>  
 			<!-- 图片区域 -->
 			<div class="uploadPicture">
-				<div class="productImg" v-for="picture,index in product.pictures">
+				<!-- 图片 -->
+				<div class="productImg .col-xs-4" id="picture1">
 					<div class="productImg_div">
-						<img src="images/commodityLogo.png">
+						<label for="picture1File"><img src="images/commodityLogo.png" title="更换图片"></label>
+						<div class="productDelete" @click="deletePicture(picture.pictureId)"><div title="删除图片">删除</div></div>
 					</div>
+					<input id="picture1File" type="file" style="display: none;">
 				</div>	
+				<div class="productImg .col-xs-4" id="picture2">
+					<div class="productImg_div">
+						<label for="picture3File"><img src="images/commodityLogo.png" title="更换图片"></label>
+						<div class="productDelete" @click="deletePicture(picture.pictureId)"><div title="删除图片">删除</div></div>
+					</div>
+					<input id="picture2File" type="file" style="display: none;">
+				</div>
+				<div class="productImg .col-xs-4" id="picture3">
+					<div class="productImg_div">
+						<label for="picture3File"><img src="images/commodityLogo.png" title="更换图片"></label>
+						<div class="productDelete" @click="deletePicture(picture.pictureId)"><div title="删除图片">删除</div></div>
+					</div>
+					<input id="picture3File" type="file" style="display: none;">
+				</div>
+				<div class="productImg .col-xs-4" id="picture4">
+					<div class="productImg_div">
+						<label for="picture4File"><img src="images/commodityLogo.png" title="更换图片"></label>
+						<div class="productDelete" @click="deletePicture(picture.pictureId)"><div title="删除图片">删除</div></div>
+					</div>
+					<input id="picture4File" type="file" style="display: none;">
+				</div>
+				<div class="productImg .col-xs-4" id="picture5">
+					<div class="productImg_div">
+						<label for="picture5File"><img src="images/commodityLogo.png" title="更换图片"></label>
+						<div class="productDelete" @click="deletePicture(picture.pictureId)"><div title="删除图片">删除</div></div>
+					</div>
+					<input id="picture5File" type="file" style="display: none;">
+				</div>
 			</div>
 		<div class="clearfix cl">
 			<div class="Button_operation">

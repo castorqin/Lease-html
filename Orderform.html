@@ -91,7 +91,7 @@
 				<th width="100px">租借天数</th>	
                 <th width="100px">订单时间</th>	
 				<th width="100px">到期时间</th>	
-				<th width="120px">所属类型</th>
+				<th width="120px">押金</th>
 				<th width="70px">状态</th>                
 				<th width="120px">操作</th>
 			</tr>
@@ -116,7 +116,7 @@
 		<!-- 到期时间 -->
 		<td>{{order.expireTime}}</td>
 		<!-- 所属类型 -->
-		<td>{{order.category}}</td>
+		<td>{{order.deposit}}</td>
 		<!-- 状态 -->
 		<td class="td-status">
 			<label v-if="order.status === '0'" style="width: 50px; height: 20px; color: white; background-color: #E5E5E5;">待发货</label>
@@ -126,6 +126,7 @@
 			<label v-if="order.status === '4'" style="width: 80px; height: 20px; color: white; background-color: #2ECEE7;">对方已退回</label>
 			<label v-if="order.status === '5'" style="width: 50px; height: 20px; color: white; background-color: #2ECEE7;">已收货</label>
 			<label v-if="order.status === '6'" style="width: 50px; height: 20px; color: white; background-color: #E17B67;">待评价</label>
+			<label v-if="order.status === '7'" style="width: 80px; height: 20px; color: white; background-color: goldenrod;">已被买断√</label>
 		</td>
 		<!-- 操作 -->
 		<td>
@@ -306,7 +307,7 @@ jQuery(function($) {
 		"bStateSave": true,//状态保存
 		"aoColumnDefs": [
 		  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
-		  {"orderable":false,"aTargets":[0,2,8,10]}// 制定列不参与排序
+		  {"orderable":false,"aTargets":[0,2,10]}// 制定列不参与排序
 		] } );
 				
 				
