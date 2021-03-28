@@ -25,7 +25,7 @@
         <script src="assets/laydate/laydate.js" type="text/javascript"></script>
         <script src="js/lrtk.js" type="text/javascript" ></script>
 		<script src="myJs/Refund.js" type="text/javascript" ></script>
-<title>退款管理</title>
+<title>退换货管理</title>
 </head>
 
 <body>
@@ -68,14 +68,27 @@
 					 <td>{{order.orderTime}}</td>
 					 <td>{{order.expireTime}}</td>
 					  <td class="td-status">
-						  <span class="label label-success radius" v-if="order.status === '3'">待退款</span>
-						  <span class="label radius" v-else>已退款</span>
+						  <label v-if="order.status === '1'" style="width: 80px; height: 20px; color: white; background-color: black;">退货待处理</label>
+						  <label v-if="order.status === '2'" style="width: 80px; height: 20px; color: white; background-color: gray;">待对方发货</label>
+						  <label v-if="order.status === '3'" style="width: 80px; height: 20px; color: white; background-color: gray;">对方已发货</label>
+						  <label v-if="order.status === '4'" style="width: 50px; height: 20px; color: white; background-color: #2ECEE7;">待退款</label>
+						  <label v-if="order.status === '5'" style="width: 80px; height: 20px; color: white; background-color: #2ECEE7;">已撤销退货</label>
+						  <label v-if="order.status === '6'" style="width: 110px; height: 20px; color: white; background-color: red;">平台已介入退货</label>
+						  <label v-if="order.status === '7'" style="width: 80px; height: 20px; color: white; background-color: #E17B67;">换货待处理</label>
+						  <label v-if="order.status === '8'" style="width: 80px; height: 20px; color: white; background-color: goldenrod;">已撤销换货</label>
+						  <label v-if="order.status === '9'" style="width: 110px; height: 20px; color: white; background-color: red;">平台已介入换货</label>
+						  <label v-if="order.status === '10'" style="width: 50px; height: 20px; color: white; background-color: green;">已完成</label>
 						</td>
 					<td>{{order.refundInstructions}}</td>
 					 <td>
-						 <a onClick="Delivery_Refund(this,'10001')"  href="javascript:;" title="退款"  class="btn btn-xs btn-success" v-if="order.status === '3'">退款</a> 
+						 <a onClick="Delivery_Refund(this,'10001')"  href="javascript:;" title="同意退款"  class="btn btn-xs btn-success" v-if="order.status === '1'">同意退款</a> 
+						 <a title="拒绝退款" href="javascript:;"  @click="deleteOrder(order.orderId)" class="btn btn-xs btn-danger" v-if="order.status === '1'">拒绝退款</a>
+						  <a title="确认收货" href="javascript:;"  @click="deleteOrder(order.orderId)" class="btn btn-xs btn-default" v-if="order.status === '3'">确认收货</a>
+						   <a title="立即退款" href="javascript:;"  @click="deleteOrder(order.orderId)" class="btn btn-xs btn-default" v-if="order.status === '4'">立即退款</a>
+						   <a onClick="Delivery_Refund(this,'10001')"  href="javascript:;" title="同意换货"  class="btn btn-xs btn-success" v-if="order.status === '7'">同意换货</a>
+						   <a title="拒绝换货" href="javascript:;"  @click="deleteOrder(order.orderId)" class="btn btn-xs btn-danger" v-if="order.status === '7'">拒绝换货</a>
 						 <a title="退款订单详细"  href="Refund_detailed.html"  class="btn btn-xs btn-info Refund_detailed" >详细</a> 
-						 <a title="删除" href="javascript:;"  @click="deleteOrder(order.orderId)" class="btn btn-xs btn-warning" >删除</a>    
+						 <a title="删除" href="javascript:;"  @click="deleteOrder(order.orderId)" class="btn btn-xs btn-warning" v-if="order.status === '5' || order.status === '8' || order.status === '10'">删除</a>   
 					 </td>
 				 </tr>
 			</tbody>

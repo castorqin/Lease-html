@@ -12,7 +12,79 @@ $(function(){
 					expireTime : '2019-2-28', // 租界商品到期时间
 					deposit : '200', // 商品类型
 					refunAmount : '56656',
-					status : '3', // 订单状态 3代表租家待退还
+					status : '1', // 订单状态 买家申请退货
+					refundInstructions : '成色与描述不符!'
+				},
+				{
+					orderId : '9875656232211111', // 订单编号
+					productTitle : '【下拉入会享更高优惠】vivo iQOO U3新品5G大电池学生游戏手机官方旗舰店官网正品爱酷vivoiqoou3 vivou3', // 商品名称
+					totalPrice : '985256.12', // 总价
+					unitPrice : '56656', // 单天价格
+					orderTime : '2017-11-8', //订单创建时间  
+					expireTime : '2019-2-28', // 租界商品到期时间
+					deposit : '200', // 商品类型
+					refunAmount : '56656',
+					status : '2', // 订单状态 卖家同意退货等待对方发货
+					refundInstructions : '成色与描述不符!'
+				},
+				{
+					orderId : '9875656232211111', // 订单编号
+					productTitle : '【下拉入会享更高优惠】vivo iQOO U3新品5G大电池学生游戏手机官方旗舰店官网正品爱酷vivoiqoou3 vivou3', // 商品名称
+					totalPrice : '985256.12', // 总价
+					unitPrice : '56656', // 单天价格
+					orderTime : '2017-11-8', //订单创建时间  
+					expireTime : '2019-2-28', // 租界商品到期时间
+					deposit : '200', // 商品类型
+					refunAmount : '56656',
+					status : '3', // 订单状态 买家已发货
+					refundInstructions : '成色与描述不符!'
+				},
+				{
+					orderId : '9875656232211111', // 订单编号
+					productTitle : '【下拉入会享更高优惠】vivo iQOO U3新品5G大电池学生游戏手机官方旗舰店官网正品爱酷vivoiqoou3 vivou3', // 商品名称
+					totalPrice : '985256.12', // 总价
+					unitPrice : '56656', // 单天价格
+					orderTime : '2017-11-8', //订单创建时间  
+					expireTime : '2019-2-28', // 租界商品到期时间
+					deposit : '200', // 商品类型
+					refunAmount : '56656',
+					status : '4', // 订单状态 卖家确认已收货退款
+					refundInstructions : '成色与描述不符!'
+				},
+				{
+					orderId : '9875656232211111', // 订单编号
+					productTitle : '【下拉入会享更高优惠】vivo iQOO U3新品5G大电池学生游戏手机官方旗舰店官网正品爱酷vivoiqoou3 vivou3', // 商品名称
+					totalPrice : '985256.12', // 总价
+					unitPrice : '56656', // 单天价格
+					orderTime : '2017-11-8', //订单创建时间  
+					expireTime : '2019-2-28', // 租界商品到期时间
+					deposit : '200', // 商品类型
+					refunAmount : '56656',
+					status : '5', // 订单状态 买家已撤回退款
+					refundInstructions : '成色与描述不符!'
+				},
+				{
+					orderId : '9875656232211111', // 订单编号
+					productTitle : '【下拉入会享更高优惠】vivo iQOO U3新品5G大电池学生游戏手机官方旗舰店官网正品爱酷vivoiqoou3 vivou3', // 商品名称
+					totalPrice : '985256.12', // 总价
+					unitPrice : '56656', // 单天价格
+					orderTime : '2017-11-8', //订单创建时间  
+					expireTime : '2019-2-28', // 租界商品到期时间
+					deposit : '200', // 商品类型
+					refunAmount : '56656',
+					status : '6', // 订单状态 长时间未处理退货平台已介入
+					refundInstructions : '成色与描述不符!'
+				},
+				{
+					orderId : '9875656232211111', // 订单编号
+					productTitle : '【下拉入会享更高优惠】vivo iQOO U3新品5G大电池学生游戏手机官方旗舰店官网正品爱酷vivoiqoou3 vivou3', // 商品名称
+					totalPrice : '985256.12', // 总价
+					unitPrice : '56656', // 单天价格
+					orderTime : '2017-11-8', //订单创建时间  
+					expireTime : '2019-2-28', // 租界商品到期时间
+					deposit : '200', // 商品类型
+					refunAmount : '56656',
+					status : '7', // 订单状态 换货待处理
 					refundInstructions : '成色与描述不符!'
 				},
 				{
@@ -24,7 +96,31 @@ $(function(){
 					expireTime : '2016-7-8', // 租界商品到期时间
 					deposit : '200', // 商品类型
 					refunAmount : '0',
-					status : '5', // 订单状态 5代表商家已收货订单完成
+					status : '8', // 订单状态 买家撤销换货
+					refundInstructions : '垃圾东西!'
+				},
+				{
+					orderId : '20160705445622', // 订单编号
+					productTitle : '小米 Max 全网通 高配版 3GB内存 64GB ROM 金色 移动联通电信4G手机Y', // 商品名称
+					totalPrice : '456.5', // 总价
+					unitPrice : '14', // 单天价格
+					orderTime : '2016-7-5', //订单创建时间  
+					expireTime : '2016-7-8', // 租界商品到期时间
+					deposit : '200', // 商品类型
+					refunAmount : '0',
+					status : '9', // 订单状态 平台已介入换货
+					refundInstructions : '垃圾东西!'
+				},
+				{
+					orderId : '20160705445622', // 订单编号
+					productTitle : '小米 Max 全网通 高配版 3GB内存 64GB ROM 金色 移动联通电信4G手机Y', // 商品名称
+					totalPrice : '456.5', // 总价
+					unitPrice : '14', // 单天价格
+					orderTime : '2016-7-5', //订单创建时间  
+					expireTime : '2016-7-8', // 租界商品到期时间
+					deposit : '200', // 商品类型
+					refunAmount : '0',
+					status : '10', // 订单状态 平台已介入换货
 					refundInstructions : '垃圾东西!'
 				}
 			]
