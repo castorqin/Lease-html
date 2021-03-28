@@ -3,42 +3,42 @@ $(function(){
 		el : '#brand_style',
 		data : {
 			brands : [
-				{
-					id : '1234', // 品牌编号
-					logo : 'products/logo/34.jpg', // 品牌logo
-					brandName : '玉兰油OLAY', // 品牌名称
-					area : '法国', // 所属地区
-					introduction : '玉兰油OLAY，是宝洁公司全球著名的护肤品牌，OLAY以全球高科技护肤研发技术为后盾......', // 描述
-					addTime : '2014-6-11 11:11:42', // 加入时间
-					status : '1', // 状态
-				},
-				{
-					id : '5678', // 品牌编号
-					logo : 'products/logo/245.jpg', // 品牌logo
-					brandName : '御泥坊', // 品牌名称
-					area : '法国', // 所属地区
-					introduction : '玉兰油OLAY，是宝洁公司全球著名的护肤品牌，OLAY以全球高科技护肤研发技术为后盾......', // 描述
-					addTime : '2014-8-20 11:11:42', // 加入时间
-					status : '1', // 状态
-				},
-				{
-					id : '9981', // 品牌编号
-					logo : 'products/logo/199.jpg', // 品牌logo
-					brandName : '薇姿', // 品牌名称
-					area : '法国', // 所属地区
-					introduction : '玉兰油OLAY，是宝洁公司全球著名的护肤品牌，OLAY以全球高科技护肤研发技术为后盾......', // 描述
-					addTime : '2014-6-11 11:11:42', // 加入时间
-					status : '1', // 状态
-				},
-				{
-					id : '7749', // 品牌编号
-					logo : 'products/logo/152.jpg', // 品牌logo
-					brandName : '丝塔芙', // 品牌名称
-					area : '法国', // 所属地区
-					introduction : '玉兰油OLAY，是宝洁公司全球著名的护肤品牌，OLAY以全球高科技护肤研发技术为后盾......', // 描述
-					addTime : '2017-6-11 11:11:42', // 加入时间
-					status : '0', // 状态
-				}
+				// {
+				// 	id : '1234', // 品牌编号
+				// 	logo : 'products/logo/34.jpg', // 品牌logo
+				// 	brandName : '玉兰油OLAY', // 品牌名称
+				// 	area : '法国', // 所属地区
+				// 	introduction : '玉兰油OLAY，是宝洁公司全球著名的护肤品牌，OLAY以全球高科技护肤研发技术为后盾......', // 描述
+				// 	addTime : '2014-6-11 11:11:42', // 加入时间
+				// 	status : '1', // 状态
+				// },
+				// {
+				// 	id : '5678', // 品牌编号
+				// 	logo : 'products/logo/245.jpg', // 品牌logo
+				// 	brandName : '御泥坊', // 品牌名称
+				// 	area : '法国', // 所属地区
+				// 	introduction : '玉兰油OLAY，是宝洁公司全球著名的护肤品牌，OLAY以全球高科技护肤研发技术为后盾......', // 描述
+				// 	addTime : '2014-8-20 11:11:42', // 加入时间
+				// 	status : '1', // 状态
+				// },
+				// {
+				// 	id : '9981', // 品牌编号
+				// 	logo : 'products/logo/199.jpg', // 品牌logo
+				// 	brandName : '薇姿', // 品牌名称
+				// 	area : '法国', // 所属地区
+				// 	introduction : '玉兰油OLAY，是宝洁公司全球著名的护肤品牌，OLAY以全球高科技护肤研发技术为后盾......', // 描述
+				// 	addTime : '2014-6-11 11:11:42', // 加入时间
+				// 	status : '1', // 状态
+				// },
+				// {
+				// 	id : '7749', // 品牌编号
+				// 	logo : 'products/logo/152.jpg', // 品牌logo
+				// 	brandName : '丝塔芙', // 品牌名称
+				// 	area : '法国', // 所属地区
+				// 	introduction : '玉兰油OLAY，是宝洁公司全球著名的护肤品牌，OLAY以全球高科技护肤研发技术为后盾......', // 描述
+				// 	addTime : '2017-6-11 11:11:42', // 加入时间
+				// 	status : '0', // 状态
+				// }
 			]
 		},
 		created() {
@@ -49,9 +49,11 @@ $(function(){
 						'Content-Type':'multipart/form-data'
 					}
 				}
-			// axios.post('',formDate,config).then((response)=>{
-			// 	this.$set(this, 'products', response.data['data'])
-			// })
+			formDate.append('businessId', 0)
+			axios.post('http://localhost:8077/getbrand',formDate,config).then((response)=>{
+				// alert(JSON.stringify(response.data['data']))
+				this.$set(this, 'brands', response.data['data'])
+			})
 		},
 		methods : {
 				// 改变品牌状态

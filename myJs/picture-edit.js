@@ -25,8 +25,8 @@ $(function(){
 			}
 		},
 		methods : {
-			selectPicture(){
-				flag = $("#flag")
+			selectPicture(id){
+				flag = $("#flag"+id)
 				var file = event.target.files[0];
 				// 确认选择的文件是图片
 				if(null != file && file.type.indexOf("image") == 0) {
@@ -35,7 +35,7 @@ $(function(){
 				    reader.onload = function() {
 				        // 图片base64化
 				        var newUrl = this.result
-				        $("#head_img").prop("src", newUrl)
+				        $("#picture"+id+"_img").prop("src", newUrl)
 						if(flag.val() === "0"){
 							flag.val("1")
 						}

@@ -37,31 +37,41 @@
  <div class="transaction_style">
    <ul class="state-overview clearfix">
     <li class="Info">
-     <span class="symbol red"><i class="fa fa-jpy"></i></span>
-     <span class="value"><h4>交易金额</h4><p class="Quantity color_red">{{shop.transactionAmount}}</p></span>
+     <span class="symbol green"><i class="fa fa-jpy"></i></span>
+     <span class="value"><h4>今日交易金额</h4><p class="Quantity color_red">{{shop.transactionAmount}}</p></span>
     </li>
-     <li class="Info">
+	<li class="Info">
+	 <span class="symbol green"><i class="fa fa-jpy"></i></span>
+	 <span class="value"><h4>昨日交易金额</h4><p class="Quantity color_red">{{shop.transactionAmount}}</p></span>
+	</li>
+	<li class="Info">
+	 <span class="symbol red"><i class="fa fa-jpy"></i></span>
+	 <span class="value"><h4>今日退款金额</h4><p class="Quantity color_red">{{shop.refundAmount}}</p></span>
+	</li>
+	<li class="Info">
+	 <span class="symbol red"><i class="fa fa-jpy"></i></span>
+	 <span class="value"><h4>昨日退款金额</h4><p class="Quantity color_red">{{shop.refundAmount}}</p></span>
+	</li>
+     <li class="Info" style="margin-left: 20px;">
      <span class="symbol  blue"><i class="fa fa-shopping-cart"></i></span>
-     <span class="value"><h4>订单数量</h4><p class="Quantity color_red">{{shop.orderCount}}</p></span>
+     <span class="value"><h4>今日订单总量</h4><p class="Quantity color_red">{{shop.orderCount}}</p></span>
     </li>
+	<li class="Info">
+	 <span class="symbol  blue"><i class="fa fa-shopping-cart"></i></span>
+	 <span class="value"><h4>昨日订单总量</h4><p class="Quantity color_red">{{shop.orderCount}}</p></span>
+	</li>
      <li class="Info">
-     <span class="symbol terques"><i class="fa fa-shopping-cart"></i></span>
-     <span class="value"><h4>交易成功</h4><p class="Quantity color_red">{{shop.successTransaction}}</p></span>
-    </li>
-     <li class="Info">
-     <span class="symbol yellow"><i class="fa fa-shopping-cart"></i></span>
-     <span class="value"><h4>交易失败</h4><p class="Quantity color_red">{{shop.failTrasaction}}</p></span>
-    </li>
-     <li class="Info">
-     <span class="symbol darkblue"><i class="fa fa-jpy"></i></span>
-     <span class="value"><h4>退款金额</h4><p class="Quantity color_red">{{shop.refundAmount}}</p></span>
-    </li>
+     <span class="symbol green"><i class="fa fa-shopping-cart"></i></span>
+     <span class="value"><h4>今日成功订单</h4><p class="Quantity color_red">{{shop.successTransaction}}</p></span>
+	 <li class="Info">
+	 <span class="symbol green"><i class="fa fa-shopping-cart"></i></span>
+	 <span class="value"><h4>昨日成功订单</h4><p class="Quantity color_red">{{shop.successTransaction}}</p></span>
    </ul>
  
  </div>
  <div class="t_Record">
-               <div id="main" style="height:400px; overflow:hidden; width:100%; overflow:auto" ></div>     
-              </div> 
+     <div id="main" style="height:400px; overflow:hidden; width:100%; overflow:auto" ></div>     
+ </div> 
 </div>
 </body>
 </html>
@@ -99,7 +109,7 @@
         trigger: 'axis'
     },
     legend: {
-        data:['所有订单','待付款','已付款','代发货']
+        data:['所有订单','完成','失败','买断']
     },
     toolbox: {
         show : true,
@@ -136,7 +146,7 @@
             }           
         },
         {
-            name:'待付款',
+            name:'完成',
             type:'bar',
             data:[26, 59, 30, 84, 27, 77, 176, 1182, 487, 188, 60, 23],
             markPoint : {
@@ -149,7 +159,7 @@
 			
         }
 		, {
-            name:'已付款',
+            name:'失败',
             type:'bar',
             data:[26, 59, 60, 264, 287, 77, 176, 122, 247, 148, 60, 23],
             markPoint : {
@@ -161,7 +171,7 @@
            
 		}
 		, {
-            name:'代发货',
+            name:'买断',
             type:'bar',
             data:[26, 59, 80, 24, 87, 70, 175, 1072, 48, 18, 69, 63],
             markPoint : {

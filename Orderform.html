@@ -91,9 +91,9 @@
 				<th width="100px">租借天数</th>	
                 <th width="100px">订单时间</th>	
 				<th width="100px">到期时间</th>	
-				<th width="120px">押金</th>
+				<th width="100px">押金</th>
 				<th width="70px">状态</th>                
-				<th width="120px">操作</th>
+				<th width="140px">操作</th>
 			</tr>
 		</thead>
 	<tbody>
@@ -119,21 +119,23 @@
 		<td>{{order.deposit}}</td>
 		<!-- 状态 -->
 		<td class="td-status">
-			<label v-if="order.status === '0'" style="width: 50px; height: 20px; color: white; background-color: #E5E5E5;">待发货</label>
-			<label v-if="order.status === '1'" style="width: 50px; height: 20px; color: white; background-color: lightgreen;">已发货</label>
-			<label v-if="order.status === '2'" style="width: 80px; height: 20px; color: white; background-color: lightgreen;">对方已收货</label>
-			<label v-if="order.status === '3'" style="width: 80px; height: 20px; color: white; background-color: #E5E5E5;">待对方退回</label>
-			<label v-if="order.status === '4'" style="width: 80px; height: 20px; color: white; background-color: #2ECEE7;">对方已退回</label>
-			<label v-if="order.status === '5'" style="width: 50px; height: 20px; color: white; background-color: #2ECEE7;">已收货</label>
-			<label v-if="order.status === '6'" style="width: 50px; height: 20px; color: white; background-color: #E17B67;">待评价</label>
-			<label v-if="order.status === '7'" style="width: 80px; height: 20px; color: white; background-color: goldenrod;">已被买断√</label>
+			<label v-if="order.status === '0'" style="width: 50px; height: 20px; color: white; background-color: red;">待付款</label>
+			<label v-if="order.status === '1'" style="width: 50px; height: 20px; color: white; background-color: lightgreen;">待发货</label>
+			<label v-if="order.status === '2'" style="width: 50px; height: 20px; color: white; background-color: lightgreen;">已发货</label>
+			<label v-if="order.status === '3'" style="width: 80px; height: 20px; color: white; background-color: lightgreen;">对方已收货</label>
+			<label v-if="order.status === '4'" style="width: 80px; height: 20px; color: white; background-color: #2ECEE7;">待对方退回</label>
+			<label v-if="order.status === '5'" style="width: 80px; height: 20px; color: white; background-color: #2ECEE7;">对方已退回</label>
+			<label v-if="order.status === '6'" style="width: 50px; height: 20px; color: white; background-color: #2ECEE7;">已收货</label>
+			<label v-if="order.status === '7'" style="width: 50px; height: 20px; color: white; background-color: #E17B67;">待评价</label>
+			<label v-if="order.status === '8'" style="width: 80px; height: 20px; color: white; background-color: goldenrod;">已被买断√</label>
+			<label v-if="order.status === '9'" style="width: 80px; height: 20px; color: white; background-color: black;">订单已完成</label>
 		</td>
 		<!-- 操作 -->
 		<td>
-		 <a v-if="order.status === '0'" onClick="Delivery_stop(this,'10001')"  href="javascript:;" title="发货"  class="btn btn-xs btn-success"><i class="fa fa-cubes bigger-120"></i></a> 
-		 <a v-if="order.status === '4'" onClick="Delivery_stop(this,'10001')"  href="javascript:;" title="确认收货"  class="btn btn-xs btn-success"><i class="fa fa-cubes bigger-120"></i></a> 
+		 <a v-if="order.status === '1'" onClick="Delivery_stop(this,'10001')"  href="javascript:;" title="发货"  class="btn btn-xs btn-success"><i class="fa fa-cubes bigger-120"></i></a> 
+		 <a v-if="order.status === '5'" onClick="Delivery_stop(this,'10001')"  href="javascript:;" title="确认收货"  class="btn btn-xs btn-success"><i class="fa fa-cubes bigger-120"></i></a> 
 		 <a title="订单详细"  href="order_detailed.html"  class="btn btn-xs btn-info order_detailed" ><i class="fa fa-list bigger-120"></i></a> 
-		 <a title="删除" href="javascript:;"  onclick="Order_form_del(this,'1')" class="btn btn-xs btn-warning" ><i class="fa fa-trash  bigger-120"></i></a>    
+		 <a v-if="order.status <= '1'" title="删除" href="javascript:;"  onclick="Order_form_del(this,'1')" class="btn btn-xs btn-warning" ><i class="fa fa-trash  bigger-120"></i></a>    
 		</td>
      </tr>
      </tbody>
