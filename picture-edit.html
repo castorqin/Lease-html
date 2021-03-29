@@ -62,7 +62,7 @@
 			
 			<div class="Add_p_s">
             <label class="form-label col-2">产品编号：</label>
-			<div class="formControls col-2"><input type="text" class="input-text" :value="product.id"></div>
+			<div class="formControls col-2"><input type="text" class="input-text" :value="product.id" disabled ></div>
             </div>
 			<div class="Add_p_s">
              <label class="form-label col-2">产&nbsp;&nbsp;&nbsp;&nbsp;地：</label>	
@@ -112,6 +112,29 @@
 			 <label class="form-label col-2">库&nbsp;&nbsp;&nbsp;&nbsp;存：</label>	
 			 <div class="formControls col-2"><input type="text" class="input-text" :value="product.stock" style="width: 120.35px;">件</div>
 			</div>
+			<div class="Add_p_s" style="width: 1000px;">
+				<label class="form-label col-2">租&nbsp;&nbsp;&nbsp;&nbsp;期：</label>	
+				<div class="formControls col-2">
+					<label class="checkbox-inline">
+					  <input type="checkbox" id="date1" value="1"> 一天
+					</label>
+					<label class="checkbox-inline">
+					  <input type="checkbox" id="date2" value="2"> 一周
+					</label>
+					<label class="checkbox-inline">
+					  <input type="checkbox" id="date3" value="3"> 一月
+					</label>
+					<label class="checkbox-inline">
+					  <input type="checkbox" id="date4" value="4"> 一季
+					</label>
+					<label class="checkbox-inline">
+					  <input type="checkbox" id="date5" value="5"> 半年
+					</label>
+					<label class="checkbox-inline">
+					  <input type="checkbox" id="date6" value="6"> 一年
+					</label>
+				</div>
+			</div>
 		</div>
 		
 		<div class="clearfix cl">
@@ -135,38 +158,43 @@
 				<!-- 图片 -->
 				<div class="productImg .col-xs-4" id="picture1">
 					<div class="productImg_div">
-						<label for="picture1File"><img src="images/commodityLogo.png" title="更换图片"></label>
-						<div class="productDelete" @click="deletePicture(picture.pictureId)"><div title="删除图片">删除</div></div>
+						<label for="picture1File"><img src="images/commodityLogo.png" title="更换图片" id="picture1_img"></label>
+						<!-- <div class="productDelete" @click="deletePicture(picture.pictureId)"><div title="删除图片">删除</div></div> -->
 					</div>
-					<input id="picture1File" type="file" style="display: none;">
+					<input id="picture1File" type="file" style="display: none;" @change="selectPicture(1)">
+					<input value="0" id="flag1" style="display: none;">
 				</div>	
 				<div class="productImg .col-xs-4" id="picture2">
 					<div class="productImg_div">
-						<label for="picture3File"><img src="images/commodityLogo.png" title="更换图片"></label>
-						<div class="productDelete" @click="deletePicture(picture.pictureId)"><div title="删除图片">删除</div></div>
+						<label for="picture2File"><img src="images/commodityLogo.png" title="更换图片" id="picture2_img"></label>
+						<!-- <div class="productDelete" @click="deletePicture(picture.pictureId)"><div title="删除图片">删除</div></div> -->
 					</div>
-					<input id="picture2File" type="file" style="display: none;">
+					<input id="picture2File" type="file" style="display: none;" @change="selectPicture(2)">
+					<input value="0" id="flag2" style="display: none;">
 				</div>
 				<div class="productImg .col-xs-4" id="picture3">
 					<div class="productImg_div">
-						<label for="picture3File"><img src="images/commodityLogo.png" title="更换图片"></label>
-						<div class="productDelete" @click="deletePicture(picture.pictureId)"><div title="删除图片">删除</div></div>
+						<label for="picture3File"><img src="images/commodityLogo.png" title="更换图片" id="picture3_img"></label>
+						<!-- <div class="productDelete" @click="deletePicture(picture.pictureId)"><div title="删除图片">删除</div></div> -->
 					</div>
-					<input id="picture3File" type="file" style="display: none;">
+					<input id="picture3File" type="file" style="display: none;" @change="selectPicture(3)">
+					<input value="0" id="flag3" style="display: none;">
 				</div>
 				<div class="productImg .col-xs-4" id="picture4">
 					<div class="productImg_div">
-						<label for="picture4File"><img src="images/commodityLogo.png" title="更换图片"></label>
-						<div class="productDelete" @click="deletePicture(picture.pictureId)"><div title="删除图片">删除</div></div>
+						<label for="picture4File"><img src="images/commodityLogo.png" title="更换图片" id="picture4_img"></label>
+						<!-- <div class="productDelete" @click="deletePicture(picture.pictureId)"><div title="删除图片">删除</div></div> -->
 					</div>
-					<input id="picture4File" type="file" style="display: none;">
+					<input id="picture4File" type="file" style="display: none;" @change="selectPicture(4)">
+					<input value="0" id="flag4" style="display: none;">
 				</div>
 				<div class="productImg .col-xs-4" id="picture5">
 					<div class="productImg_div">
-						<label for="picture5File"><img src="images/commodityLogo.png" title="更换图片"></label>
-						<div class="productDelete" @click="deletePicture(picture.pictureId)"><div title="删除图片">删除</div></div>
+						<label for="picture5File"><img src="images/commodityLogo.png" title="更换图片" id="picture5_img"></label>
+						<!-- <div class="productDelete" @click="deletePicture(picture.pictureId)"><div title="删除图片">删除</div></div> -->
 					</div>
-					<input id="picture5File" type="file" style="display: none;">
+					<input id="picture5File" type="file" style="display: none;" @change="selectPicture(5)">
+					<input value="0" id="flag5" style="display: none;">
 				</div>
 			</div>
 		<div class="clearfix cl">

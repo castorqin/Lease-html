@@ -24,7 +24,22 @@ $(function(){
 				] // 图片
 			}
 		},
+		created() {
+			// 初始化页面获取商品信息
+			// let formDate = new FormData()
+			// let config = {
+			// 		headers: {
+			// 			'Content-Type':'multipart/form-data'
+			// 		}
+			// 	}
+			// formDate.append('businessId', 0)
+			// axios.post('http://localhost:8077/addImg',formDate,config).then((response)=>{
+			// 	// alert(JSON.stringify(response.data['data']))
+			// 	this.$set(this, 'brands', response.data['data'])
+			// })
+		},
 		methods : {
+			// 选择图片
 			selectPicture(id){
 				flag = $("#flag"+id)
 				var file = event.target.files[0];
@@ -39,13 +54,31 @@ $(function(){
 						if(flag.val() === "0"){
 							flag.val("1")
 						}
+						
+						// 上传图片获取url
+						// let formDate = new FormData()
+						// let config = {
+						// 		headers: {
+						// 			'Content-Type':'multipart/form-data'
+						// 		}
+						// 	}
+						// formDate.append('file', document.getElementById("picture"+id+"File").files[0])
+						// axios.post('http://localhost:8077/addImg',formDate,config).then((response)=>{
+						// 	alert(JSON.stringify(response.data['data']))
+						// 	this.$set(this, 'brands', response.data['data'])
+						// })
 				    }
 				}
 			},
 			deletePicture(id){
 				alert(id)
 				$('#' + id).remove()
-			}
+			},
+			// 保存新商品
+			saveProduct(){
+				let flag1 = ($("#flag1").val() != '0' && $("#flag2").val() != '0' && $("#flag3").val() != '0' && $("#flag4").val() != '0' && $("#flag5").val() != '0')
+				
+			}	
 		}
 	})
 })

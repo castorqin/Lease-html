@@ -12,7 +12,7 @@ $(function(){
 					expireTime : '2019-2-28', // 租界商品到期时间
 					deposit : '200', // 商品类型
 					refunAmount : '56656',
-					status : '1', // 订单状态 买家申请退货
+					status : '10', // 订单状态 买家申请退货
 					refundInstructions : '成色与描述不符!'
 				},
 				{
@@ -24,7 +24,7 @@ $(function(){
 					expireTime : '2019-2-28', // 租界商品到期时间
 					deposit : '200', // 商品类型
 					refunAmount : '56656',
-					status : '2', // 订单状态 卖家同意退货等待对方发货
+					status : '11', // 订单状态 卖家同意退货等待对方发货
 					refundInstructions : '成色与描述不符!'
 				},
 				{
@@ -36,7 +36,7 @@ $(function(){
 					expireTime : '2019-2-28', // 租界商品到期时间
 					deposit : '200', // 商品类型
 					refunAmount : '56656',
-					status : '3', // 订单状态 买家已发货
+					status : '12', // 订单状态 买家已发货
 					refundInstructions : '成色与描述不符!'
 				},
 				{
@@ -48,7 +48,7 @@ $(function(){
 					expireTime : '2019-2-28', // 租界商品到期时间
 					deposit : '200', // 商品类型
 					refunAmount : '56656',
-					status : '4', // 订单状态 卖家确认已收货退款
+					status : '13', // 订单状态 卖家确认已收货退款
 					refundInstructions : '成色与描述不符!'
 				},
 				{
@@ -60,7 +60,7 @@ $(function(){
 					expireTime : '2019-2-28', // 租界商品到期时间
 					deposit : '200', // 商品类型
 					refunAmount : '56656',
-					status : '5', // 订单状态 买家已撤回退款
+					status : '14', // 订单状态 买家已撤回退款
 					refundInstructions : '成色与描述不符!'
 				},
 				{
@@ -72,7 +72,7 @@ $(function(){
 					expireTime : '2019-2-28', // 租界商品到期时间
 					deposit : '200', // 商品类型
 					refunAmount : '56656',
-					status : '6', // 订单状态 长时间未处理退货平台已介入
+					status : '15', // 订单状态 长时间未处理退货平台已介入
 					refundInstructions : '成色与描述不符!'
 				},
 				{
@@ -84,7 +84,7 @@ $(function(){
 					expireTime : '2019-2-28', // 租界商品到期时间
 					deposit : '200', // 商品类型
 					refunAmount : '56656',
-					status : '7', // 订单状态 换货待处理
+					status : '16', // 订单状态 换货待处理
 					refundInstructions : '成色与描述不符!'
 				},
 				{
@@ -96,7 +96,7 @@ $(function(){
 					expireTime : '2016-7-8', // 租界商品到期时间
 					deposit : '200', // 商品类型
 					refunAmount : '0',
-					status : '8', // 订单状态 买家撤销换货
+					status : '17', // 订单状态 买家撤销换货
 					refundInstructions : '垃圾东西!'
 				},
 				{
@@ -108,7 +108,7 @@ $(function(){
 					expireTime : '2016-7-8', // 租界商品到期时间
 					deposit : '200', // 商品类型
 					refunAmount : '0',
-					status : '9', // 订单状态 平台已介入换货
+					status : '18', // 订单状态 平台已介入换货
 					refundInstructions : '垃圾东西!'
 				},
 				{
@@ -120,7 +120,7 @@ $(function(){
 					expireTime : '2016-7-8', // 租界商品到期时间
 					deposit : '200', // 商品类型
 					refunAmount : '0',
-					status : '10', // 订单状态 平台已介入换货
+					status : '19', // 订单状态 平台已介入换货
 					refundInstructions : '垃圾东西!'
 				}
 			]

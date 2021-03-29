@@ -59,11 +59,6 @@
 	     <div class="formControls col-10"><input type="text" class="input-text" :value="product.shortTitle"></div>
 		</div>
 		<div class=" clearfix cl">
-			
-			<div class="Add_p_s">
-            <label class="form-label col-2">产品编号：</label>
-			<div class="formControls col-2"><input type="text" class="input-text" :value="product.id"></div>
-            </div>
 			<div class="Add_p_s">
              <label class="form-label col-2">产&nbsp;&nbsp;&nbsp;&nbsp;地：</label>	
 			 <div class="formControls col-2"><input type="text" class="input-text" :value="product.originPlace"></div>
@@ -111,6 +106,29 @@
 			<div class="Add_p_s" style="width: 300px;">
 			 <label class="form-label col-2">库&nbsp;&nbsp;&nbsp;&nbsp;存：</label>	
 			 <div class="formControls col-2"><input type="text" class="input-text" :value="product.stock" style="width: 120.35px;">件</div>
+			</div>
+			<div class="Add_p_s" style="width: 1000px;">
+				<label class="form-label col-2">租&nbsp;&nbsp;&nbsp;&nbsp;期：</label>	
+				<div class="formControls col-2">
+					 <label class="checkbox-inline">
+					   <input type="checkbox" id="date1" value="1"> 一天
+					 </label>
+					 <label class="checkbox-inline">
+					   <input type="checkbox" id="date2" value="2"> 一周
+					 </label>
+					 <label class="checkbox-inline">
+					   <input type="checkbox" id="date3" value="3"> 一月
+					 </label>
+					 <label class="checkbox-inline">
+					   <input type="checkbox" id="date4" value="4"> 一季
+					 </label>
+					 <label class="checkbox-inline">
+					   <input type="checkbox" id="date5" value="5"> 半年
+					 </label>
+					 <label class="checkbox-inline">
+					   <input type="checkbox" id="date6" value="6"> 一年
+					 </label>
+				</div>
 			</div>
 		</div>
 		
@@ -176,8 +194,7 @@
 			</div>
 		<div class="clearfix cl">
 			<div class="Button_operation">
-				<button onClick="article_save_submit();" class="btn btn-primary radius" type="button"><i class="icon-save "></i>保存并提交审核</button>
-				<button onClick="article_save();" class="btn btn-secondary  btn-warning" type="button"><i class="icon-save"></i>上传图片</button>
+				<button onClick="article_save_submit();" class="btn btn-primary radius" type="button" @click="saveProduct()"><i class="icon-save "></i>保存并提交审核</button>
 			</div>
 		</div>
 	</form>
