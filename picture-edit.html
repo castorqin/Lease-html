@@ -30,24 +30,8 @@
 
 </head>
 <body>
-<div class="clearfix" id="add_picture">
-<div id="scrollsidebar" class="left_Treeview">
-    <div class="show_btn" id="rightArrow"><span></span></div>
-    <div class="widget-box side_content" >
-    <div class="side_title"><a title="隐藏" class="close_btn"><span></span></a></div>
-     <div class="side_list">
-      <div class="widget-header header-color-green2">
-          <h4 class="lighter smaller">选择产品类型</h4>
-      </div>
-      <div class="widget-body">
-          <div class="widget-main padding-8">
-              <div  id="treeDemo" class="ztree"></div>
-          </div>
-  </div>
-  </div>
-  </div>  
-  </div>
-   <div class="page_right_style">
+<div class="clearfix" id="add_picture" style="margin-left: 50px;">
+   <div class="page_style">
    <div class="type_title">编辑商品</div>
 	<form class="form form-horizontal" id="form-article-add">
 		<div class="clearfix cl">
@@ -59,39 +43,6 @@
 	     <div class="formControls col-10"><input type="text" class="input-text" :value="product.shortTitle"></div>
 		</div>
 		<div class=" clearfix cl">
-			
-			<div class="Add_p_s">
-            <label class="form-label col-2">产品编号：</label>
-			<div class="formControls col-2"><input type="text" class="input-text" :value="product.id" disabled ></div>
-            </div>
-			<div class="Add_p_s">
-             <label class="form-label col-2">产&nbsp;&nbsp;&nbsp;&nbsp;地：</label>	
-			 <div class="formControls col-2"><input type="text" class="input-text" :value="product.originPlace"></div>
-			</div>
-            <div class="Add_p_s">
-             <label class="form-label col-2">材&nbsp;&nbsp;&nbsp;&nbsp;质：</label>	
-			 <div class="formControls col-2"><input type="text" class="input-text" :value="product.material"></div>
-			</div>
-            <div class="Add_p_s">
-             <label class="form-label col-2">品&nbsp;&nbsp;&nbsp;&nbsp;牌：</label>	
-			 <div class="formControls col-2"><input type="text" class="input-text" :value="product.brand"></div>
-			</div>
-             <div class="Add_p_s">
-             <label class="form-label col-2">重&nbsp;&nbsp;&nbsp;&nbsp;量：</label>	
-			 <div class="formControls col-2"><input type="text" class="input-text" :value="product.productWeight">g</div>
-			</div>
-            <div class="Add_p_s">
-             <label class="form-label col-2">押&nbsp;&nbsp;&nbsp;&nbsp;金：</label>	
-			 <div class="formControls col-2"><input type="text" class="input-text" :value="product.deposit">元</div>
-			</div>
-            <div class="Add_p_s" style="width: 300px;">
-             <label class="form-label col-2">租&nbsp;&nbsp;&nbsp;&nbsp;价：</label>	
-			 <div class="formControls col-2"><input type="text" class="input-text" :value="product.rentPrice" style="width: 120.35px;">元/天</div>
-			</div>
-			<div class="Add_p_s" style="width: 239.5px;">
-			 <label class="form-label col-2">成&nbsp;&nbsp;&nbsp;&nbsp;色：</label>	
-			 <div class="formControls col-2"><input type="text" class="input-text" :value="product.quality" style="width: 120.35px;"></div>
-			</div>
 			<div class="Add_p_s">
 				<label class="form-label col-2">类&nbsp;&nbsp;&nbsp;&nbsp;别：</label>	
 				<div class="formControls col-2">
@@ -108,31 +59,93 @@
 					</span>
 				</div>
 			</div>
-			<div class="Add_p_s" style="width: 300px;">
+			<div class="Add_p_s">
+			 <label class="form-label col-2">品&nbsp;&nbsp;&nbsp;&nbsp;牌：</label>	
+			 <div class="formControls col-2">
+				 <span class="select-box">
+				 	<select class="select">
+				 		<option>请选择</option>
+				 		<option value="1" v-if="product.category != '1'">RedMi</option>
+				 		<option value="1" v-else selected >RedMi</option>
+				 		<option value="2" v-if="product.category != '2'">华为</option>
+				 		<option value="2" v-else selected >华为</option>
+				 		<option value="3" v-if="product.category != '3'">苹果</option>
+				 		<option value="3" v-else selected >苹果</option>
+				 	</select>
+				 </span>
+			 </div>
+			</div>
+			<div class="Add_p_s" style="width: 239.5px;">
+			 <label class="form-label col-2">成&nbsp;&nbsp;&nbsp;&nbsp;色：</label>	
+			 <div class="formControls col-2">
+			 	<span class="select-box">
+			 		<select class="select">
+			 			<option>请选择</option>
+			 			<option value="1" v-if="product.category != '1'">十成新</option>
+			 			<option value="1" v-else selected >十成新</option>
+			 			<option value="2" v-if="product.category != '2'">九成新</option>
+			 			<option value="2" v-else selected >九成新</option>
+			 			<option value="3" v-if="product.category != '3'">八成新</option>
+			 			<option value="3" v-else selected >八成新</option>
+						<option value="3" v-if="product.category != '4'">七成新</option>
+						<option value="3" v-else selected >七成新</option>
+						<option value="3" v-if="product.category != '5'">六成新</option>
+						<option value="3" v-else selected >六成新</option>
+						<option value="3" v-if="product.category != '6'">五成新</option>
+						<option value="3" v-else selected >五成新</option>
+			 		</select>
+			 	</span>
+			 </div>
+			</div>
+			<div class="Add_p_s">
+             <label class="form-label col-2">产&nbsp;&nbsp;&nbsp;&nbsp;地：</label>	
+			 <div class="formControls col-2"><input type="text" class="input-text" :value="product.originPlace"></div>
+			</div>
+            <div class="Add_p_s">
+             <label class="form-label col-2">材&nbsp;&nbsp;&nbsp;&nbsp;质：</label>	
+			 <div class="formControls col-2"><input type="text" class="input-text" :value="product.material"></div>
+			</div>
+			<div class="Add_p_s">
+			 <label class="form-label col-2">重&nbsp;&nbsp;&nbsp;&nbsp;量：</label>	
+			 <div class="formControls col-2"><input type="text" class="input-text" :value="product.productWeight">g</div>
+			</div>
+			<div class="Add_p_s">
 			 <label class="form-label col-2">库&nbsp;&nbsp;&nbsp;&nbsp;存：</label>	
 			 <div class="formControls col-2"><input type="text" class="input-text" :value="product.stock" style="width: 120.35px;">件</div>
+			</div>
+			<div class="Add_p_s">
+			 <label class="form-label col-2">买&nbsp;&nbsp;&nbsp;&nbsp;断：</label>	
+			 <div class="formControls col-2"><input type="text" class="input-text" :value="product.deposit">元</div>
+			</div>
+            <div class="Add_p_s">
+             <label class="form-label col-2">押&nbsp;&nbsp;&nbsp;&nbsp;金：</label>	
+			 <div class="formControls col-2"><input type="text" class="input-text" :value="product.deposit">元</div>
+			</div>
+            <div class="Add_p_s" style="width: 300px;">
+             <label class="form-label col-2">租&nbsp;&nbsp;&nbsp;&nbsp;价：</label>	
+			 <div class="formControls col-2"><input type="text" class="input-text" :value="product.rentPrice" style="width: 120.35px;">元/天</div>
 			</div>
 			<div class="Add_p_s" style="width: 1000px;">
 				<label class="form-label col-2">租&nbsp;&nbsp;&nbsp;&nbsp;期：</label>	
 				<div class="formControls col-2">
-					<label class="checkbox-inline">
-					  <input type="checkbox" id="date1" value="1"> 一天
-					</label>
-					<label class="checkbox-inline">
-					  <input type="checkbox" id="date2" value="2"> 一周
-					</label>
-					<label class="checkbox-inline">
-					  <input type="checkbox" id="date3" value="3"> 一月
-					</label>
-					<label class="checkbox-inline">
-					  <input type="checkbox" id="date4" value="4"> 一季
-					</label>
-					<label class="checkbox-inline">
-					  <input type="checkbox" id="date5" value="5"> 半年
-					</label>
-					<label class="checkbox-inline">
-					  <input type="checkbox" id="date6" value="6"> 一年
-					</label>
+					 <label class="checkbox-inline">
+					   <input type="checkbox" id="date1" value="1"> 一天
+					 </label>
+					 <label class="checkbox-inline">
+					   <input type="checkbox" id="date2" value="2"> 一周
+					 </label>
+					 <label class="checkbox-inline">
+					   <input type="checkbox" id="date3" value="3"> 一月
+					 </label>
+					 <label class="checkbox-inline">
+					   <input type="checkbox" id="date4" value="4"> 一季
+					 </label>
+					 <label class="checkbox-inline">
+					   <input type="checkbox" id="date5" value="5"> 半年
+					 </label>
+					 <label class="checkbox-inline">
+					   <input type="checkbox" id="date6" value="6"> 一年
+					 </label>
 				</div>
 			</div>
 		</div>
@@ -197,10 +210,9 @@
 					<input value="0" id="flag5" style="display: none;">
 				</div>
 			</div>
-		<div class="clearfix cl">
+		<div class="clearfix cl" style="margin-left: 150px;">
 			<div class="Button_operation">
-				<button onClick="article_save_submit();" class="btn btn-primary radius" type="button"><i class="icon-save "></i>保存并提交审核</button>
-				<button onClick="article_save();" class="btn btn-secondary  btn-warning" type="button"><i class="icon-save"></i>上传图片</button>
+				<button onClick="article_save_submit();" class="btn btn-primary radius" type="button" @click="saveProduct()"><i class="icon-save "></i>保存并提交审核</button>
 			</div>
 		</div>
 	</form>
@@ -224,94 +236,5 @@
 <script type="text/javascript" src="js/H-ui.js"></script> 
 <script type="text/javascript" src="js/H-ui.admin.js"></script> 
 <script src="myJs/picture-edit.js"></script>
-<script>
-$(function() { 
-	$("#add_picture").fix({
-		float : 'left',
-		skin : 'green',	
-		durationTime :false,
-		stylewidth:'220',
-		spacingw:0,
-		spacingh:260,
-	});
-});
-$( document).ready(function(){
-//初始化宽度、高度
-  
-   $(".widget-box").height($(window).height()); 
-   $(".page_right_style").height($(window).height()); 
-   $(".page_right_style").width($(window).width()-220); 
-  //当文档窗口发生改变时 触发  
-    $(window).resize(function(){
-
-	 $(".widget-box").height($(window).height()); 
-	 $(".page_right_style").height($(window).height()); 
-	 $(".page_right_style").width($(window).width()-220); 
-	});	
-});
-/******树状图********/
-var setting = {
-	view: {
-		dblClickExpand: false,
-		showLine: false,
-		selectedMulti: false
-	},
-	data: {
-		simpleData: {
-			enable:true,
-			idKey: "id",
-			pIdKey: "pId",
-			rootPId: ""
-		}
-	},
-	callback: {
-		beforeClick: function(treeId, treeNode) {
-			var zTree = $.fn.zTree.getZTreeObj("tree");
-			if (treeNode.isParent) {
-				zTree.expandNode(treeNode);
-				return false;
-			} else {
-				demoIframe.attr("src",treeNode.file + ".html");
-				return true;
-			}
-		}
-	}
-};
-
-var zNodes =[
-	{ id:1, pId:0, name:"商城分类列表", open:true},
-	{ id:11, pId:1, name:"蔬菜水果"},
-	{ id:111, pId:11, name:"蔬菜"},
-	{ id:112, pId:11, name:"苹果"},
-	{ id:113, pId:11, name:"大蒜"},
-	{ id:114, pId:11, name:"白菜"},
-	{ id:115, pId:11, name:"青菜"},
-	{ id:12, pId:1, name:"手机数码"},
-	{ id:121, pId:12, name:"手机 "},
-	{ id:122, pId:12, name:"照相机 "},
-	{ id:13, pId:1, name:"电脑配件"},
-	{ id:131, pId:13, name:"手机 "},
-	{ id:122, pId:13, name:"照相机 "},
-	{ id:14, pId:1, name:"服装鞋帽"},
-	{ id:141, pId:14, name:"手机 "},
-	{ id:42, pId:14, name:"照相机 "},
-];
-		
-var code;
-		
-function showCode(str) {
-	if (!code) code = $("#code");
-	code.empty();
-	code.append("<li>"+str+"</li>");
-}
-$(document).ready(function(){
-	var t = $("#treeDemo");
-	t = $.fn.zTree.init(t, setting, zNodes);
-	demoIframe = $("#testIframe");
-	//demoIframe.bind("load", loadReady);
-	var zTree = $.fn.zTree.getZTreeObj("tree");
-	//zTree.selectNode(zTree.getNodeByParam("id",'11'));
-});			
-</script>
 </body>
 </html>
