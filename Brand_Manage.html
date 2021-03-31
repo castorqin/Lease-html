@@ -8,6 +8,7 @@
 <meta http-equiv="Cache-Control" content="no-siteapp" />
 <script src="js/vue.min.js"></script>
 <script src="js/axios.min.js"></script>
+<script src="js/vue-router.js"></script>
  <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
         <link rel="stylesheet" href="css/style.css"/>       
         <link rel="stylesheet" href="assets/css/ace.min.css" />
@@ -24,8 +25,8 @@
         <script src="assets/js/typeahead-bs2.min.js"></script>
        
 		<!-- page specific plugin scripts -->
-		<script src="assets/js/jquery.dataTables.min.js"></script>
-		<script src="assets/js/jquery.dataTables.bootstrap.js"></script>
+		<!-- <script src="assets/js/jquery.dataTables.min.js"></script> -->
+		<!-- <script src="assets/js/jquery.dataTables.bootstrap.js"></script> -->
         <script type="text/javascript" src="js/H-ui.js"></script> 
         <script type="text/javascript" src="js/H-ui.admin.js"></script> 
         <script src="assets/layer/layer.js" type="text/javascript" ></script>
@@ -38,32 +39,28 @@
 
 <body>
 <div class="page-content clearfix">
-  <div id="brand_style">
+  <div id="brand_style" v-cloak >
     <div class="search_style">
     </div>
      <div class="border clearfix">
        <span class="l_f">
         <a href="Add_Brand.html"  title="添加品牌" class="btn btn-warning Order_form"><i class="icon-plus"></i>添加品牌</a>
-        <a href="javascript:void(0)" class="btn btn-danger" @click="batchDelete()"><i class="icon-trash"></i>批量删除</a>
-        <a href="javascript:void(0)" class="btn btn-info">国内品牌</a>
-        <a href="javascript:void(0)" class="btn btn-success">国外品牌</a>
        </span>
-       <span class="r_f">共：<b>234</b>个品牌</span>
+       <span class="r_f">共：<b>{{brands.length}}</b>个品牌</span>
      </div>
     <!--品牌展示-->
      <div class="brand_list clearfix" id="category">
      <div class="show_btn" id="rightArrow"><span></span></div>
-     <div class="chart_style side_content">
-     <div class="side_title"><a title="隐藏" class="close_btn"><span></span></a></div>
-         <div id="main" style="height:300px;" class="side_list"></div>
+     <div class="chart_style side_content"  style="width: 0px;">
+     <!-- <div class="side_title"><a title="隐藏" class="close_btn"><span></span></a></div> -->
+         <!-- <div id="main" style="height:300px;" class="side_list"></div> -->
      </div>
      <!--品牌列表-->
-      <div class="table_menu_list">
-       <table class="table table-striped table-bordered table-hover" id="sample-table" style="margin: auto; margin-top: 20px;">
+      <div class="table_menu_list" style="width: 100%; margin-left: 0px;">
+       <table class="table table-striped table-bordered table-hover" id="sample-table" style="width: 100%; margin-left: 0px;">
 		<thead>
 		 <tr>
-				<th width="25px"><label><input type="checkbox" class="ace"><span class="lbl"></span></label></th>
-				<th width="90px">品牌编号</th>
+				<th width="120px">品牌编号</th>
 				<th width="130px">品牌LOGO</th>
 				<th width="130px">品牌名称</th>
 				<th width="140px">所属地区/国家</th>
@@ -74,23 +71,21 @@
 			</tr>
 		</thead>
 	<tbody>
-		<tr v-for="brand in brands" v-bind:id="brand.id" class="brandInformation">
-          <td width="25px"><label><input type="checkbox" class="ace" ><span class="lbl"></span></label></td>
+		<tr v-for="brand,index in brands" v-bind:id="brand.id" class="brandInformation">
           <td width="80px">{{brand.id}}</td>
           <td><img :src="brand.logo"  width="130"/></td>
           <td><a href="javascript:ovid()" name="Brand_detailed.html" style="cursor:pointer" class="text-primary brond_name" onclick="generateOrders('561');" :title="brand.brandName">{{brand.name}}</a></td>
-          <td>{{brand.area}}</td>
+          <td>{{brand.placeOrigin}}</td>
           <td class="text-l">{{brand.describe}}</td>
           <td>{{brand.createTime}}</td>
           <td class="td-status">
-			  <span v-if="brand.status === '1'" class="label label-success radius">已启用</span>
-			  <span v-else class="label label radius">已启用</span>
+			  <span v-if="brand.status === 1" class="label label-success radius">已启用</span>
+			  <span v-else-if="brand.status === -1" class="label label-danger radius">已删除</span>
+			  <span v-else class="label label radius">已停用</span>
 			</td>
           <td class="td-manage">
-          <a v-if="brand.status === '1'" onClick="member_stop(this,'10001')"  href="javascript:;" title="停用"  class="btn btn-xs btn-success"><i class="icon-ok bigger-120"></i></a>
-		  <a v-else onClick="member_start(this,'10001')"  href="javascript:;" title="启用"  class="btn btn-xs btn"><i class="icon-ok bigger-120"></i></a> 
-          <a title="编辑" onclick="member_edit('编辑','member-add.html','4','','510')" href="javascript:;"  class="btn btn-xs btn-info" ><i class="icon-edit bigger-120"></i></a> 
-          <a title="删除" href="javascript:;"  @click="deleteBrand(brand.id)" class="btn btn-xs btn-warning" ><i class="icon-trash  bigger-120"></i></a>
+          <a v-if="brand.status != -1" title="编辑" @click="edit(index)" class="btn btn-xs btn-info" ><i class="icon-edit bigger-120"></i></a> 
+          <a v-if="brand.status != -1" title="删除" href="javascript:;"  @click="deleteBrand(brand.id)" class="btn btn-xs btn-warning" ><i class="icon-trash  bigger-120"></i></a>
           </td>
 		</tr>
         </tbody>
@@ -104,47 +99,47 @@
 </html>
 <script>
 	
-jQuery(function($) {
-		var oTable1 = $('#sample-table').dataTable( {
-		"aaSorting": [[1, "desc" ]],//默认第几个排序
-		"bStateSave": true,//状态保存
-		"aoColumnDefs": [
-		  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
-		  {"orderable":false,"aTargets":[0,2,3,4,5,7,8]}// 制定列不参与排序
-		] } );
+// jQuery(function($) {
+// 		var oTable1 = $('#sample-table').dataTable( {
+// 		"aaSorting": [[1, "desc" ]],//默认第几个排序
+// 		"bStateSave": true,//状态保存
+// 		"aoColumnDefs": [
+// 		  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
+// 		  {"orderable":false,"aTargets":[0,2,3,4,5,7,8]}// 制定列不参与排序
+// 		] } );
 				
 				
-				$('table th input:checkbox').on('click' , function(){
-					var that = this;
-					$(this).closest('table').find('tr > td:first-child input:checkbox')
-					.each(function(){
-						this.checked = that.checked;
-						$(this).closest('tr').toggleClass('selected');
-					});
+// 				$('table th input:checkbox').on('click' , function(){
+// 					var that = this;
+// 					$(this).closest('table').find('tr > td:first-child input:checkbox')
+// 					.each(function(){
+// 						this.checked = that.checked;
+// 						$(this).closest('tr').toggleClass('selected');
+// 					});
 						
-				});
+// 				});
 			
 			
-				$('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
-				function tooltip_placement(context, source) {
-					var $source = $(source);
-					var $parent = $source.closest('table')
-					var off1 = $parent.offset();
-					var w1 = $parent.width();
+// 				$('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
+// 				function tooltip_placement(context, source) {
+// 					var $source = $(source);
+// 					var $parent = $source.closest('table')
+// 					var off1 = $parent.offset();
+// 					var w1 = $parent.width();
 			
-					var off2 = $source.offset();
-					var w2 = $source.width();
+// 					var off2 = $source.offset();
+// 					var w2 = $source.width();
 			
-					if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
-					return 'left';
-				}
-			});
+// 					if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
+// 					return 'left';
+// 				}
+// 			});
 
 
 //初始化宽度、高度  
- $(".chart_style").height($(window).height()-215);
-  $(".table_menu_list").height($(window).height()-215);
-  $(".table_menu_list ").width($(window).width()-440);
+ $(".chart_style").height($(window).height()-100);
+  $(".table_menu_list").height($(window).height()-100);
+  $(".table_menu_list ").width($(window).width());
   //当文档窗口发生改变时 触发  
     $(window).resize(function(){
 	 $(".chart_style").height($(window).height()-215);
@@ -221,74 +216,4 @@ function member_del(obj,id){
 // });
 
 
-</script>
- <script type="text/javascript">
-        require.config({
-            paths: {
-                echarts: './assets/dist'
-            }
-        });
-        require(
-            [
-                'echarts',
-                'echarts/chart/pie',   // 按需加载所需图表，如需动态类型切换功能，别忘了同时加载相应图表
-                'echarts/chart/funnel'
-            ],
-            function (ec) {
-                var myChart = ec.init(document.getElementById('main'));
-			
-			option = {
-    title : {
-        text: '国内国外品牌比例',
-        subtext: '',
-        x:'center'
-    },
-    tooltip : {
-        trigger: 'item',
-        formatter: "{a} <br/>{b} : {c} ({d}%)"
-    },
-    legend: {
-        orient : 'vertical',
-        x : 'left',
-        data:['国内品牌','国外品牌']
-    },
-    toolbox: {
-        show : false,
-        feature : {
-            mark : {show: false},
-            dataView : {show: false, readOnly: false},
-            magicType : {
-                show: true, 
-                type: ['pie', 'funnel'],
-                option: {
-                    funnel: {
-                        x: '25%',
-                        width: '50%',
-                        funnelAlign: 'left',
-                        max: 545
-                    }
-                }
-            },
-            restore : {show: true},
-            saveAsImage : {show: true}
-        }
-    },
-    calculable : true,
-    series : [
-        {
-            name:'品牌数量',
-            type:'pie',
-            radius : '55%',
-            center: ['50%', '60%'],
-            data:[
-                {value:335, name:'国内品牌'},
-                {value:210, name:'国外品牌'},
-
-            ]
-        }
-    ]
-};
-   myChart.setOption(option);
-			}
-);
 </script>

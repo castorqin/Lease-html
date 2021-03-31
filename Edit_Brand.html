@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>添加品牌</title>
+<title>编辑品牌</title>
 <meta name="renderer" content="webkit|ie-comp|ie-stand">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
@@ -28,29 +28,29 @@
         <script type="text/javascript" src="Widget/swfupload/swfupload.queue.js"></script>
         <script type="text/javascript" src="Widget/swfupload/swfupload.speed.js"></script>
         <script type="text/javascript" src="Widget/swfupload/handlers.js"></script>
-		 <script type="text/javascript" src="myJs/Add_Brand.js"></script>
+		 <script type="text/javascript" src="myJs/Edit_Brand.js"></script>
 </head>
 
 <body>
 <div class=" clearfix">
  <div id="add_brand" class="clearfix">
- <div class="left_add" style="margin-top: 25px; margin-left: 750px; border-top: 1px #DDDDDD solid; border-left: 1px #DDDDDD solid;">
-   <div class="title_name" style="border-right: 1px #DDDDDD solid;">添加品牌</div>
+ <div v-cloak class="left_add" style="margin-top: 25px; margin-left: 750px; border-top: 1px #DDDDDD solid; border-left: 1px #DDDDDD solid;">
+   <div class="title_name" style="border-right: 1px #DDDDDD solid;">编辑</div>
    <ul class="add_conent">
-    <li class=" clearfix"><label class="label_name"><i>*</i>品牌名称：</label> <input id="name" type="text" class="add_text"/></li>
+    <li class=" clearfix"><label class="label_name"><i>*</i>品牌名称：</label> <input id="name" type="text" class="add_text" :value="brand.name"/></li>
     <li class=" clearfix"><label class="label_name">品牌图片：</label>
 		<div class="demo l_f">
 	        <div class="logobox">
 				<div class="resizebox" style="width: 110px; height: 110px;">
-					<label for="brandLogo" style="cursor: pointer;"><img id="brandLogoImg" src="images/image.png" style="width: 100px; height: 100px;"/></label> 
+					<label for="brandLogo" style="cursor: pointer;"><img id="brandLogoImg" :src="brand.logo" style="width: 100px; height: 100px;"/></label> 
 					<input type="file" id="brandLogo" style="display: none;" @change="selectLogo()"/> 
 					<input type="text" value="0" id="flag" style="display: none;">
 				</div>
 			</div>	  
         </div>  
     </li>
-         <li class=" clearfix"><label class="label_name"><i>*</i>所属国家：</label> <input id="area" type="text" class="add_text" style="width:120px"/></li>
-         <li class=" clearfix"><label class="label_name">品牌描述：</label> <textarea id="brand_describe" cols="" rows="" class="textarea" onkeyup="checkLength(this);" style="height: 500px; font-size: large;"></textarea><span class="wordage">限制字数：<span style="color:Red;">500</span>字</span></li>
+         <li class=" clearfix"><label class="label_name"><i>*</i>所属国家：</label> <input id="area" type="text" class="add_text" style="width:120px" :value="brand.placeOrigin"/></li>
+         <li class=" clearfix"><label class="label_name">品牌描述：</label> <textarea id="brand_describe" cols="" rows="" class="textarea" onkeyup="checkLength(this);" style="height: 500px; font-size: large;">{{brand.describe}}</textarea><span class="wordage">限制字数：<span style="color:Red;">500</span>字</span></li>
    </ul>
    <div class="button_brand" ><input @click="addBrand()" type="button"  class="btn btn-warning" value="保存"/><input @click="cancel()" type="reset" value="取消" class="btn btn-warning"/></div>
  </div>

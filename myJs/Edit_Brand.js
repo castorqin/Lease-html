@@ -2,7 +2,7 @@ $(function(){
 	let addBrand = new Vue({
 		el : '.left_add',
 		data : {
-			logo : ''
+			brand : JSON.parse(sessionStorage.getItem('brand')),
 		},
 		methods : {
 			// 选择logo
@@ -18,7 +18,7 @@ $(function(){
 				axios.post('http://localhost:8077/addImg',formDate,config).then((response)=>{
 					// alert(JSON.stringify(response.data['data']))
 					$("#brandLogoImg").prop("src", response.data['data'])
-					this.$set(this, 'logo', response.data['data'])
+					this.brand.logo = response.data['data']
 					$("#flag").val("1")
 				})
 			},
@@ -30,13 +30,14 @@ $(function(){
 							'Content-Type':'multipart/form-data'
 						}
 					}
+				formDate.append('id', this.brand.id)		
 				formDate.append('name', $("#name").val())	
 				formDate.append('bid', 4)
-				formDate.append('logo', this.logo)
+				formDate.append('logo', this.brand.logo)
 				formDate.append('placeOrigin', $("#area").val())
 				formDate.append('brand_describe', $("#brand_describe").val())
 				formDate.append('status', 1)
-				axios.post('http://localhost:8077/addBrand',formDate,config).then((response)=>{
+				axios.post('http://localhost:8077/updateBrand',formDate,config).then((response)=>{
 					// alert(JSON.stringify(response.data['data']))
 					window.location.href = "../BackstageManager/Brand_Manage.html"
 				})

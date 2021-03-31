@@ -41,34 +41,19 @@ $(function(){
 		methods : {
 			// 选择图片
 			selectPicture(id){
-				flag = $("#flag"+id)
-				var file = event.target.files[0];
-				// 确认选择的文件是图片
-				if(null != file && file.type.indexOf("image") == 0) {
-				    var reader = new FileReader()
-				    reader.readAsDataURL(file)
-				    reader.onload = function() {
-				        // 图片base64化
-				        var newUrl = this.result
-				        $("#picture"+id+"_img").prop("src", newUrl)
-						if(flag.val() === "0"){
-							flag.val("1")
+		
+				 $("#flag"+id).val("1")
+				// 上传图片获取url
+				let formDate = new FormData()
+				let config = {
+						headers: {
+							'Content-Type':'multipart/form-data'
 						}
-						
-						// 上传图片获取url
-						let formDate = new FormData()
-						let config = {
-								headers: {
-									'Content-Type':'multipart/form-data'
-								}
-							}
-						formDate.append('file', document.getElementById("picture"+id+"File").files[0])
-						axios.post('http://localhost:8077/addImg',formDate,config).then((response)=>{
-							alert(JSON.stringify(response.data['data']))
-							// this.$set(this, 'brands', response.data['data'])
-						})
-				    }
-				}
+					}
+				formDate.append('file', document.getElementById("picture"+id+"File").files[0])
+				axios.post('http://localhost:8077/addImg',formDate,config).then((response)=>{
+					$("#picture"+id+"_img").prop("src", response.data['data'])
+				})
 			},
 			deletePicture(id){
 				alert(id)
