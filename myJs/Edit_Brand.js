@@ -1,4 +1,8 @@
 $(function(){
+	if(sessionStorage.getItem('brand') === null){
+		history.go(-1)
+	}
+	
 	let addBrand = new Vue({
 		el : '.left_add',
 		data : {

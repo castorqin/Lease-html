@@ -35,26 +35,19 @@
    <div class="type_title">编辑商品</div>
 	<form class="form form-horizontal" id="form-article-add">
 		<div class="clearfix cl">
-         <label class="form-label col-2"><span class="c-red">*</span>商品名称：</label>
-		 <div class="formControls col-10"><input type="text" class="input-text" :value="product.productTitle"></div>
-		</div>
-		<div class=" clearfix cl">
-         <label class="form-label col-2">简略名称：</label>
-	     <div class="formControls col-10"><input type="text" class="input-text" :value="product.shortTitle"></div>
+	     <label class="form-label col-2"><span class="c-red">*</span>商品名称：</label>
+		 <div class="formControls col-10"><input id="subTittle" type="text" class="input-text" :value="product.productTitle"></div>
 		</div>
 		<div class=" clearfix cl">
 			<div class="Add_p_s">
 				<label class="form-label col-2">类&nbsp;&nbsp;&nbsp;&nbsp;别：</label>	
 				<div class="formControls col-2">
 					<span class="select-box">
-						<select class="select">
-							<option>请选择</option>
-							<option value="1" v-if="product.category != '1'">手机</option>
-							<option value="1" v-else selected >手机</option>
-							<option value="2" v-if="product.category != '2'">电脑</option>
-							<option value="2" v-else selected >电脑</option>
-							<option value="3" v-if="product.category != '3'">相机</option>
-							<option value="3" v-else selected >相机</option>
+						<select class="select" id="category">
+							<option value="0">请选择</option>
+							<option value="1">手机</option>
+							<option value="2">电脑</option>
+							<option value="3">相机</option>
 						</select>
 					</span>
 				</div>
@@ -63,14 +56,9 @@
 			 <label class="form-label col-2">品&nbsp;&nbsp;&nbsp;&nbsp;牌：</label>	
 			 <div class="formControls col-2">
 				 <span class="select-box">
-				 	<select class="select">
-				 		<option>请选择</option>
-				 		<option value="1" v-if="product.category != '1'">RedMi</option>
-				 		<option value="1" v-else selected >RedMi</option>
-				 		<option value="2" v-if="product.category != '2'">华为</option>
-				 		<option value="2" v-else selected >华为</option>
-				 		<option value="3" v-if="product.category != '3'">苹果</option>
-				 		<option value="3" v-else selected >苹果</option>
+				 	<select class="select" id="brand">
+				 		<option value="0">请选择</option>
+				 		<option :value="brand.id" v-for="brand in brands">{{brand.name}}</option>
 				 	</select>
 				 </span>
 			 </div>
@@ -79,87 +67,54 @@
 			 <label class="form-label col-2">成&nbsp;&nbsp;&nbsp;&nbsp;色：</label>	
 			 <div class="formControls col-2">
 			 	<span class="select-box">
-			 		<select class="select">
-			 			<option>请选择</option>
-			 			<option value="1" v-if="product.category != '1'">十成新</option>
-			 			<option value="1" v-else selected >十成新</option>
-			 			<option value="2" v-if="product.category != '2'">九成新</option>
-			 			<option value="2" v-else selected >九成新</option>
-			 			<option value="3" v-if="product.category != '3'">八成新</option>
-			 			<option value="3" v-else selected >八成新</option>
-						<option value="3" v-if="product.category != '4'">七成新</option>
-						<option value="3" v-else selected >七成新</option>
-						<option value="3" v-if="product.category != '5'">六成新</option>
-						<option value="3" v-else selected >六成新</option>
-						<option value="3" v-if="product.category != '6'">五成新</option>
-						<option value="3" v-else selected >五成新</option>
+			 		<select class="select" id="quality">
+			 			<option value="0">请选择</option>
+			 			<option value="1">十成新</option>
+			 			<option value="2">九成新</option>
+			 			<option value="3">八成新</option>
+						<option value="4">七成新</option>
+						<option value="5">六成新</option>
+						<option value="6">五成新</option>
 			 		</select>
 			 	</span>
 			 </div>
 			</div>
-			<div class="Add_p_s">
-             <label class="form-label col-2">产&nbsp;&nbsp;&nbsp;&nbsp;地：</label>	
-			 <div class="formControls col-2"><input type="text" class="input-text" :value="product.originPlace"></div>
-			</div>
-            <div class="Add_p_s">
-             <label class="form-label col-2">材&nbsp;&nbsp;&nbsp;&nbsp;质：</label>	
-			 <div class="formControls col-2"><input type="text" class="input-text" :value="product.material"></div>
+	        <div class="Add_p_s">
+	         <label class="form-label col-2">材&nbsp;&nbsp;&nbsp;&nbsp;质：</label>	
+			 <div class="formControls col-2"><input id="material" type="text" class="input-text" :value="product.material"></div>
 			</div>
 			<div class="Add_p_s">
 			 <label class="form-label col-2">重&nbsp;&nbsp;&nbsp;&nbsp;量：</label>	
-			 <div class="formControls col-2"><input type="text" class="input-text" :value="product.productWeight">g</div>
+			 <div class="formControls col-2"><input id="weight" type="text" class="input-text" :value="product.weight">g</div>
 			</div>
 			<div class="Add_p_s">
 			 <label class="form-label col-2">库&nbsp;&nbsp;&nbsp;&nbsp;存：</label>	
-			 <div class="formControls col-2"><input type="text" class="input-text" :value="product.stock" style="width: 120.35px;">件</div>
+			 <div class="formControls col-2"><input id="stock" type="text" class="input-text" :value="product.stock" style="width: 120.35px;">件</div>
 			</div>
 			<div class="Add_p_s">
 			 <label class="form-label col-2">买&nbsp;&nbsp;&nbsp;&nbsp;断：</label>	
-			 <div class="formControls col-2"><input type="text" class="input-text" :value="product.deposit">元</div>
+			 <div class="formControls col-2"><input id="buyPrice" type="text" class="input-text" :value="product.buyPrice">元</div>
 			</div>
-            <div class="Add_p_s">
-             <label class="form-label col-2">押&nbsp;&nbsp;&nbsp;&nbsp;金：</label>	
-			 <div class="formControls col-2"><input type="text" class="input-text" :value="product.deposit">元</div>
+	        <div class="Add_p_s">
+	         <label class="form-label col-2">押&nbsp;&nbsp;&nbsp;&nbsp;金：</label>	
+			 <div class="formControls col-2"><input id="deposit" type="text" class="input-text" :value="product.deposit">元</div>
 			</div>
-            <div class="Add_p_s" style="width: 300px;">
-             <label class="form-label col-2">租&nbsp;&nbsp;&nbsp;&nbsp;价：</label>	
-			 <div class="formControls col-2"><input type="text" class="input-text" :value="product.rentPrice" style="width: 120.35px;">元/天</div>
-			</div>
-			<div class="Add_p_s" style="width: 1000px;">
-				<label class="form-label col-2">租&nbsp;&nbsp;&nbsp;&nbsp;期：</label>	
-				<div class="formControls col-2">
-					 <label class="checkbox-inline">
-					   <input type="checkbox" id="date1" value="1"> 一天
-					 </label>
-					 <label class="checkbox-inline">
-					   <input type="checkbox" id="date2" value="2"> 一周
-					 </label>
-					 <label class="checkbox-inline">
-					   <input type="checkbox" id="date3" value="3"> 一月
-					 </label>
-					 <label class="checkbox-inline">
-					   <input type="checkbox" id="date4" value="4"> 一季
-					 </label>
-					 <label class="checkbox-inline">
-					   <input type="checkbox" id="date5" value="5"> 半年
-					 </label>
-					 <label class="checkbox-inline">
-					   <input type="checkbox" id="date6" value="6"> 一年
-					 </label>
-				</div>
+	        <div class="Add_p_s" style="width: 300px;">
+	         <label class="form-label col-2">租&nbsp;&nbsp;&nbsp;&nbsp;价：</label>	
+			 <div class="formControls col-2"><input id="rent" type="text" class="input-text" :value="product.rent" style="width: 120.35px;">元/天</div>
 			</div>
 		</div>
 		
 		<div class="clearfix cl">
 			<label class="form-label col-2">关键词：</label>
 			<div class="formControls col-10">
-				<input type="text" class="input-text" :value="product.keyWords">
+				<input id="keyWords" type="text" class="input-text" :value="product.keyWords">
 			</div>
 		</div>
 		<div class="clearfix cl">
 			<label class="form-label col-2">产品介绍：</label>
 			<div class="formControls col-10">
-				<textarea :value="product.introduction" name="" cols="" rows="" class="textarea"  placeholder="说点什么...最少输入20个字符" datatype="*10-100" dragonfly="true" nullmsg="备注不能为空！" onKeyUp="textarealength(this,200)"></textarea>
+				<textarea :value="product.productDescribe" id="productDescribe" name="" cols="" rows="" class="textarea"  placeholder="说点什么...最少输入20个字符" datatype="*10-100" dragonfly="true" nullmsg="备注不能为空！" onKeyUp="textarealength(this,200)"></textarea>
 				<p class="textarea-numberbar"><em class="textarea-length">0</em>/200</p>
 			</div>
 		</div>
@@ -171,7 +126,7 @@
 				<!-- 图片 -->
 				<div class="productImg .col-xs-4" id="picture1">
 					<div class="productImg_div">
-						<label for="picture1File"><img src="images/commodityLogo.png" title="更换图片" id="picture1_img"></label>
+						<label for="picture1File"><img :src="product.imgList[0]" title="更换图片" id="picture1_img"></label>
 						<!-- <div class="productDelete" @click="deletePicture(picture.pictureId)"><div title="删除图片">删除</div></div> -->
 					</div>
 					<input id="picture1File" type="file" style="display: none;" @change="selectPicture(1)">
@@ -179,7 +134,7 @@
 				</div>	
 				<div class="productImg .col-xs-4" id="picture2">
 					<div class="productImg_div">
-						<label for="picture2File"><img src="images/commodityLogo.png" title="更换图片" id="picture2_img"></label>
+						<label for="picture2File"><img :src="product.imgList[1]" title="更换图片" id="picture2_img"></label>
 						<!-- <div class="productDelete" @click="deletePicture(picture.pictureId)"><div title="删除图片">删除</div></div> -->
 					</div>
 					<input id="picture2File" type="file" style="display: none;" @change="selectPicture(2)">
@@ -187,7 +142,7 @@
 				</div>
 				<div class="productImg .col-xs-4" id="picture3">
 					<div class="productImg_div">
-						<label for="picture3File"><img src="images/commodityLogo.png" title="更换图片" id="picture3_img"></label>
+						<label for="picture3File"><img :src="product.imgList[2]" title="更换图片" id="picture3_img"></label>
 						<!-- <div class="productDelete" @click="deletePicture(picture.pictureId)"><div title="删除图片">删除</div></div> -->
 					</div>
 					<input id="picture3File" type="file" style="display: none;" @change="selectPicture(3)">
@@ -195,7 +150,7 @@
 				</div>
 				<div class="productImg .col-xs-4" id="picture4">
 					<div class="productImg_div">
-						<label for="picture4File"><img src="images/commodityLogo.png" title="更换图片" id="picture4_img"></label>
+						<label for="picture4File"><img :src="product.imgList[3]" title="更换图片" id="picture4_img"></label>
 						<!-- <div class="productDelete" @click="deletePicture(picture.pictureId)"><div title="删除图片">删除</div></div> -->
 					</div>
 					<input id="picture4File" type="file" style="display: none;" @change="selectPicture(4)">
@@ -203,7 +158,7 @@
 				</div>
 				<div class="productImg .col-xs-4" id="picture5">
 					<div class="productImg_div">
-						<label for="picture5File"><img src="images/commodityLogo.png" title="更换图片" id="picture5_img"></label>
+						<label for="picture5File"><img :src="product.imgList[4]" title="更换图片" id="picture5_img"></label>
 						<!-- <div class="productDelete" @click="deletePicture(picture.pictureId)"><div title="删除图片">删除</div></div> -->
 					</div>
 					<input id="picture5File" type="file" style="display: none;" @change="selectPicture(5)">
@@ -212,7 +167,7 @@
 			</div>
 		<div class="clearfix cl" style="margin-left: 150px;">
 			<div class="Button_operation">
-				<button onClick="article_save_submit();" class="btn btn-primary radius" type="button" @click="saveProduct()"><i class="icon-save "></i>保存并提交审核</button>
+				<button onClick="article_save_submit();" class="btn btn-primary radius" type="button" @click="saveProduct()"><i class="icon-save "></i>保存并提交</button>
 			</div>
 		</div>
 	</form>

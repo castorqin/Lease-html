@@ -2,39 +2,7 @@ $(function(){
 	let productList = new Vue({
 		el : '#products_style',
 		data : {
-			products : [
-				{
-					id : '8848',// 编号
-					subTittle : '小米 Max 全网通 高配版 3GB内存 64GB ROM 金色 移动联通电信4G手机Y',// 名称
-					deposit : '5467',// 押金
-					rentPrice : '4525', // 租价
-					stock : '123456', // 库存
-					saleCount : '123456', // 销量
-					addTime : '2014-6-11 11:11:42', // 发布时间
-					status : '1' // 状态
-				},
-				{
-					id : '9981',
-					subTittle : '小米',
-					deposit : '4456',
-					rentPrice : '33232',
-					stock : '55665',
-					saleCount : '45454',
-					addTime : '2022-6-11 11:11:42',
-					status : '0'
-				},
-				{
-					id : '7758',
-					subTittle : 'IPone',
-					deposit : '10086',
-					rentPrice : '68001',
-					stock : '158581',
-					saleCount : '5',
-					addTime : '2322-6-11 11:11:42',
-					status : '1'
-				}
-			],
-			len : 3
+			products : []
 		},
 		created() {
 			// 初始化页面获取商品
@@ -44,9 +12,13 @@ $(function(){
 						'Content-Type':'multipart/form-data'
 					}
 				}
-			// axios.post('',formDate,config).then((response)=>{
-			// 	this.$set(this, 'products', response.data['data'])
-			// })
+			formDate.append('businessId', 4)
+			formDate.append('pageIndex', 1)
+			formDate.append('num', 4)
+			axios.post('http://localhost:8077/getProduct',formDate,config).then((response)=>{
+				// alert(JSON.stringify(response.data['data']))
+				this.$set(this, 'products', response.data['data'])
+			})
 		},
 		methods : {
 			// 改变商品状态
@@ -108,38 +80,10 @@ $(function(){
 					}
 				})
 			},
-			// 批量删除商品
-			batchDelete(){
-				layer.confirm('确认要删除吗？',function(index){
-					layer.msg('已删除!',{icon:1,time:1000});
-					let selectedProducts = [];
-					let productInformations = $(".productInformation")
-					let len = productInformations.length
-					for(let i = 0; i < len; i++){
-						if(productInformations[i].children[0].children[0].children[0].checked){
-							let id = productInformations[i].children[1].innerText
-							let products = productList.products
-							for(let j in products){
-								// 删除对应商品
-								if(products[j].id === id){
-									$('#' + id).remove()
-									// let formDate = new FormData()
-									// formDate.append('id', id)
-									// formDate.append('status', newStatus)
-									// let config = {
-									// 		headers: {
-									// 			'Content-Type':'multipart/form-data'
-									// 		}
-									// 	}
-									// axios.post('',formDate,config).then((response)=>{
-										
-									// })
-								}
-							}
-							selectedProducts.push(id)
-						}
-					}
-				})
+			// 编辑品牌
+			edit(index){
+				sessionStorage.setItem('product', JSON.stringify(this.products[index]))
+				window.location.href = "../BackstageManager/picture-edit.html"
 			}
 		}
 	})

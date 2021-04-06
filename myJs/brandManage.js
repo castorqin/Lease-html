@@ -5,7 +5,7 @@ $(function(){
 			brands : []
 		},
 		created() {
-			// 初始化页面获取商品
+			// 初始化页面获取品牌
 			let formDate = new FormData()
 			let config = {
 					headers: {

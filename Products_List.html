@@ -41,7 +41,6 @@
      <div class="border clearfix">
        <span class="l_f">
         <a href="picture-add.html" title="添加商品" class="btn btn-warning Order_form"><i class="icon-plus"></i>添加商品</a>
-        <a href="javascript:void(0)" class="btn btn-danger" @click="batchDelete()"><i class="icon-trash"></i>批量删除</a>
        </span>
        <span class="r_f">共：<b>{{products.length}}</b>件商品</span>
      </div>
@@ -67,7 +66,7 @@
 			</tr>
 		</thead>
 	<tbody>
-     <tr v-for="product in products" class="productInformation" v-bind:id="product.id">
+     <tr v-for="product,index in products" class="productInformation" v-bind:id="product.id">
         <td width="25px"><label><input type="checkbox" class="ace" ><span class="lbl"></span></label></td>
 		<!-- 编号 -->
         <td width="80px">{{product.id}}</td>               
@@ -76,13 +75,13 @@
 		<!-- 商品押金 -->
         <td width="100px">{{product.deposit}}</td>
 		<!-- 商品租金 -->
-        <td width="100px">{{product.rentPrice}}</td> 
+        <td width="100px">{{product.rent}}</td> 
 		<!-- 商品库存 -->
         <td width="100px">{{product.stock}}</td> 
 		<!-- 商品销量 -->
 		<td width="100px">{{product.saleCount}}</td>
 		<!-- 商品添加时间 -->
-        <td width="180px">{{product.addTime}}</td>
+        <td width="180px">{{product.creatTime}}</td>
 		<!-- 商品状态 -->
         <td class="td-status" v-if="product.status == 1"><span class="label label-success radius">已启用</span></td>
 		<td class="td-status" v-if="product.status == 0"><span class="label label-defaunt radius">已停用</span></td>
@@ -91,7 +90,7 @@
 			<!-- 停用/启用商品 -->
         <a @click="changeStatus(product.id, 0)" class="btn btn-xs btn-success stop" title="禁用" v-if="product.status == 1"><i class="icon-ok bigger-120"></i></a>
         	<a @click="changeStatus(product.id, 1)" href="javascript:;" title="启用"  class="btn btn-xs start" v-else ><i class="icon-ok bigger-120"></i></a> 
-        <a title="编辑" onclick="member_edit('编辑','picture-edit.html','4','','510')" href="javascript:;"  class="btn btn-xs btn-info" ><i class="icon-edit bigger-120"></i></a> 
+        <a title="编辑" @click="edit(index)" class="btn btn-xs btn-info" ><i class="icon-edit bigger-120"></i></a> 
         <a title="删除" href="javascript:;" @click="deleteProduct(product.id)" class="btn btn-xs btn-warning" ><i class="icon-trash  bigger-120"></i></a>
        </td>
 	  </tr>
