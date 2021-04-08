@@ -1,16 +1,12 @@
 $(function(){
+	if(sessionStorage.getItem('brand') === null){
+		history.go(-1)
+	}
+	
 	let brandDetailed = new Vue({
 		el : '#brandDetailed',
 		data : {
-			brand : {
-				brandName : '玉兰油OLAY',
-				area : '法国',
-				id : 'HG7755',
-				productNum : '3456',
-				addTime : '2016-6-21 34：23',
-				status : '0',
-				introduction : '玉兰油OLAY，是宝洁公司全球著名的护肤品牌，是中国区最大护肤品牌，在大陆已持续十年呈两位数增长。OLAY以全球高科技护肤研发技术为后盾，在深入了解中国女性对护肤和美的需要的基础上，不断扩大产品范围，目前已经涵盖了护肤和沐浴系列，真正帮助女性全面周到地呵护自己的肌肤。玉兰油全球销售额近十亿美金，成为世界上最大、最著名的护肤品牌之一。卓越的护肤功效获得世界爱美女性肯定，迅速畅销150多个国家。'
-			},
+			brand : JSON.parse(sessionStorage.getItem('brand')),
 			products : [
 				{
 					id : '8848',// 编号

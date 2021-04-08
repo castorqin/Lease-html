@@ -46,7 +46,6 @@
        <span class="l_f">
         <a href="Add_Brand.html"  title="添加品牌" class="btn btn-warning Order_form"><i class="icon-plus"></i>添加品牌</a>
        </span>
-       <span class="r_f">共：<b>{{brands.length}}</b>个品牌</span>
      </div>
     <!--品牌展示-->
      <div class="brand_list clearfix" id="category">
@@ -74,7 +73,7 @@
 		<tr v-for="brand,index in brands" v-bind:id="brand.id" class="brandInformation">
           <td width="80px">{{brand.id}}</td>
           <td><img :src="brand.logo"  width="130"/></td>
-          <td><a href="javascript:ovid()" name="Brand_detailed.html" style="cursor:pointer" class="text-primary brond_name" onclick="generateOrders('561');" :title="brand.brandName">{{brand.name}}</a></td>
+          <td><a name="Brand_detailed.html" style="cursor:pointer" class="text-primary brond_name" @click="brandDetailed(index)" :title="brand.brandName">{{brand.name}}</a></td>
           <td>{{brand.placeOrigin}}</td>
           <td class="text-l">{{brand.describe}}</td>
           <td>{{brand.createTime}}</td>

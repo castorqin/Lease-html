@@ -1,5 +1,6 @@
+let productList
 $(function(){
-	let productList = new Vue({
+	productList = new Vue({
 		el : '#products_style',
 		data : {
 			products : []
@@ -22,68 +23,61 @@ $(function(){
 		},
 		methods : {
 			// 改变商品状态
-			changeStatus(id, newStatus){
-					if(newStatus == '1'){
-						layer.confirm('确认要启用吗？',function(index){
-							$('#' + id).find(".td-manage").prepend('<a style="text-decoration:none" class="btn btn-xs btn-success" onClick="member_stop(this,id)" href="javascript:;" title="停用"><i class="icon-ok bigger-120"></i></a>');
-							$('#' + id).find(".td-status").html('<span class="label label-success radius">已启用</span>');
-							$('#' + id).find(".start").remove()
-							layer.msg('已启用!',{icon: 6,time:1000});
-						});
-					}else{
-						layer.confirm('确认要停用吗？',function(index){
-							$('#' + id).find(".td-manage").prepend('<a style="text-decoration:none" class="btn btn-xs " onClick="member_start(this,id)" href="javascript:;" title="启用"><i class="icon-ok bigger-120"></i></a>');
-							$('#' + id	).find(".td-status").html('<span class="label label-defaunt radius">已停用</span>');
-							$('#' + id).find(".stop").remove()
-							layer.msg('已停用!',{icon: 5,time:1000});
-						});
-					}
-					// 与后端交互
-					let formDate = new FormData()
-					// formDate.append('id', id)
-					// formDate.append('status', newStatus)
-					let config = {
-							headers: {
-								'Content-Type':'multipart/form-data'
-							}
-						}
-					// axios.post('',formDate,config).then((response)=>{
-						
-					// })
-				},
-			// 编辑商品
-			editProduct(id){
-				alert("编辑" + id)
-			},
-			// 删除单个商品
-			deleteProduct(id){
-				layer.confirm('确认要删除吗？',function(index){
-					layer.msg('已删除!',{icon:1,time:1000});
-					$('#' + id).remove()
-					let products = productList.products
-					for(let i in products){
-						// 删除对应商品
-						if(products[i].id === id){
-							delete products[i]
-							// let formDate = new FormData()
-							// formDate.append('id', id)
-							// formDate.append('status', newStatus)
-							// let config = {
-							// 		headers: {
-							// 			'Content-Type':'multipart/form-data'
-							// 		}
-							// 	}
-							// axios.post('',formDate,config).then((response)=>{
-								
-							// })
+			changeStatus(id, newStatus, productIndex){
+				// 与后端交互
+				let formDate = new FormData()
+				formDate.append('pid', id)
+				formDate.append('bid', 4)
+				formDate.append('status', newStatus)
+				let config = {
+						headers: {
+							'Content-Type':'multipart/form-data'
 						}
 					}
+				axios.post('http://localhost:8077/modifyProduct',formDate,config).then((response)=>{
+					productList.products[productIndex].status = newStatus
 				})
 			},
-			// 编辑品牌
+			// 停用商品
+			start(id, productIndex){
+				layer.confirm('确认要启用吗？',function(index){
+					productList.changeStatus(id, 1, productIndex)
+					layer.msg('已启用!',{icon: 6,time:1000});
+				});
+			},
+			// 启用商品
+			stop(id, productIndex){
+				layer.confirm('确认要停用吗？',function(index){
+					productList.changeStatus(id, 0, productIndex)
+					layer.msg('已停用!',{icon: 5,time:1000});
+				});
+			},
+			// 删除商品
+			deleteProduct(id, productIndex){
+				layer.confirm('确认要删除吗？',function(index){
+					productList.changeStatus(id, -1, productIndex)
+					layer.msg('已删除!',{icon:1,time:1000});
+				});
+			},
+			// 编辑商品
 			edit(index){
 				sessionStorage.setItem('product', JSON.stringify(this.products[index]))
 				window.location.href = "../BackstageManager/picture-edit.html"
+			},
+			getTime(timeStampt){
+				 let date = new Date(timeStampt);
+				 let y = date.getFullYear();
+				 let m = date.getMonth() + 1;
+				 m = m < 10 ? ('0' + m) : m;
+				 let d = date.getDate();
+				 d = d < 10 ? ('0' + d) : d;
+				 let h = date.getHours();
+				 h = h < 10 ? ('0' + h) : h;
+				 let minute = date.getMinutes();
+				 let second = date.getSeconds();
+				 minute = minute < 10 ? ('0' + minute) : minute;
+				 second = second < 10 ? ('0' + second) : second;
+				 return y + '-' + m + '-' + d+' '+h+':'+minute+':'+second;
 			}
 		}
 	})

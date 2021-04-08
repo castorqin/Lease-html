@@ -13,6 +13,8 @@
 <![endif]-->
 <script src="js/vue.min.js"></script>
 <script src="js/axios.min.js"></script>
+<link href="css/swal.css" rel="stylesheet" />
+<script src="js/swal.js"></script>
 <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="css/style.css"/>       
 <link href="assets/css/codemirror.css" rel="stylesheet">
@@ -167,7 +169,7 @@
 			</div>
 		<div class="clearfix cl" style="margin-left: 150px;">
 			<div class="Button_operation">
-				<button onClick="article_save_submit();" class="btn btn-primary radius" type="button" @click="saveProduct()"><i class="icon-save "></i>保存并提交</button>
+				<button class="btn btn-primary radius" type="button" @click="saveProduct()"><i class="icon-save "></i>保存并提交</button>
 			</div>
 		</div>
 	</form>

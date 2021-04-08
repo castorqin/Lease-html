@@ -47,6 +47,11 @@ $(function(){
 			edit(index){
 				sessionStorage.setItem('brand', JSON.stringify(this.brands[index]))
 				window.location.href = "../BackstageManager/Edit_Brand.html"
+			},
+			// 查看品牌详情
+			brandDetailed(index){
+				sessionStorage.setItem('brand', JSON.stringify(this.brands[index]))
+				window.location.href = "../BackstageManager/Brand_detailed.html"
 			}
 		}
 	})
