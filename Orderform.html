@@ -55,7 +55,7 @@
 			</tr>
 		</thead>
 	<tbody>
-     <tr v-for="order in orders">
+     <tr v-for="order,index in orders">
 		<td><label><input type="checkbox" class="ace"><span class="lbl"></span></label></td>
 		<!-- 订单编号 -->
 		<td>{{order.orderId}}</td>
@@ -92,7 +92,7 @@
 		<td>
 		 <a v-if="order.status === 1" onClick="Delivery_stop(this,'10001')"  href="javascript:;" title="发货"  class="btn btn-xs btn-success"><i class="fa fa-cubes bigger-120"></i></a> 
 		 <a v-if="order.status === 5" onClick="Delivery_stop(this,'10001')"  href="javascript:;" title="确认收货"  class="btn btn-xs btn-success"><i class="fa fa-cubes bigger-120"></i></a> 
-		 <a title="订单详细"  href="order_detailed.html"  class="btn btn-xs btn-info order_detailed" ><i class="fa fa-list bigger-120"></i></a> 
+		 <a title="订单详细"  @click="orderDetailed(index)"  class="btn btn-xs btn-info order_detailed" ><i class="fa fa-list bigger-120"></i></a> 
 		 <a v-if="order.status <= 1" title="删除" href="javascript:;"  onclick="Order_form_del(this,'1')" class="btn btn-xs btn-warning" ><i class="fa fa-trash  bigger-120"></i></a>    
 		</td>
      </tr>

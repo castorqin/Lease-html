@@ -18,8 +18,14 @@ $(function(){
 				this.$set(this, 'orders', response.data['data'])
 							
 			})
+			// axios.post('http://localhost:8082/getLogistics',formDate,config).then((response)=>{
+			// 	alert(JSON.stringify(response.data['data']))
+			// 	// this.$set(this, 'orders', response.data['data'])
+							
+			// })
 		},
 		methods : {
+			// 改变订单状态
 			changeStatus(orderId, status){
 				let formDate = new FormData()
 				let config = {
@@ -33,6 +39,11 @@ $(function(){
 					this.$set(this, 'orders', response.data['data'])
 								
 				})
+			},
+			// 订单详情
+			orderDetailed(index){
+				sessionStorage.setItem('order', JSON.stringify(this.orders[index]))
+				window.location.href = "../BackstageManager/order_detailed.html"
 			},
 			getTime(timeStampt){
 				 let date = new Date(timeStampt);

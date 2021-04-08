@@ -63,7 +63,7 @@
       <div class="product_info clearfix">
       <a href="#" class="img_link"><img :src="product.pictures[0].pictureUrl" /></a>
       <span>
-      <a href="#" class="name_link">{{product.productTitle}}</a>
+      <a href="#" class="name_link">{{product.productTittle}}</a>
 	  <br>
       <b>{{product.introduction}}</b>
       <p>产地：{{product.originPlace}}</p>
@@ -96,7 +96,7 @@
         </div>
         <div class="col-xs-3">  
          <label class="label_name" for="form-field-2"> 生成日期： </label>
-         <div class="o_content">{{order.orderTime}}</div>
+         <div class="o_content">{{getTime(order.orderTime)}}</div>
         </div>
 		<div class="col-xs-3">
 		 <label class="label_name" for="form-field-2"> 到期日期： </label>
@@ -112,7 +112,7 @@
 		</div>
 		<div class="col-xs-3">
 		 <label class="label_name" for="form-field-2"> 租借天数： </label>
-		 <div class="o_content" style="font-weight: bold; color: red;">{{order.num}}</div>
+		 <div class="o_content" style="font-weight: bold; color: red;">{{order.daySum}}</div>
 		</div>
          <div class="col-xs-3">  
          <label class="label_name" for="form-field-2"> 快递名称： </label>

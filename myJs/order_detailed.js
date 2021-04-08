@@ -1,23 +1,12 @@
 $(function(){
+	if(sessionStorage.getItem('order') === null){
+		history.go(-1)
+	}
+	
 	let orderDetailed = new Vue({
 		el : '#orderDetailed',
 		data : {
-			order : {
-				orderId : 'NJHDXJ201509-001', // 订单编号
-				receiverName : 'doinb', // 收货人姓名
-				receiverPhone : '16543432343', // 收货人电话
-				postalCode : '411423', // 收件地邮编
-				receiveAddress : '湖南省张家界市永定区吉首大学张家界校区图书馆', // 收件地址
-				payment : '在线支付', // 支付方式
-				status : '0', // 订单状态
-				orderTime : '', // 订单创建时间
-				expireTime : '', // 订单过期时间
-				deposit : '223', // 定金
-				unitPrice : '345', // 单天价格
-				num : '60', // 租借天数
-				// totalPrice : this.deposit + this.unitPrice * this.num,
-				courier : '圆通快递' // 快递
-			},
+			order : JSON.parse(sessionStorage.getItem('order')),
 			product : {
 				productTitle : '红米k40 pro 512G 12G', // 商品详细名称
 				shortTitle : '红米k40', // 商品简略名称
@@ -38,6 +27,23 @@ $(function(){
 					{pictureUrl : 'images/239961.jpg', pictureId : '987654'},
 					{pictureUrl : 'images/239961.jpg', pictureId : '456321'},
 				] // 图片
+			}
+		},
+		methods : {
+			getTime(timeStampt){
+				 let date = new Date(timeStampt);
+				 let y = date.getFullYear();
+				 let m = date.getMonth() + 1;
+				 m = m < 10 ? ('0' + m) : m;
+				 let d = date.getDate();
+				 d = d < 10 ? ('0' + d) : d;
+				 let h = date.getHours();
+				 h = h < 10 ? ('0' + h) : h;
+				 let minute = date.getMinutes();
+				 let second = date.getSeconds();
+				 minute = minute < 10 ? ('0' + minute) : minute;
+				 second = second < 10 ? ('0' + second) : second;
+				 return y + '-' + m + '-' + d+' '+h+':'+minute+':'+second;
 			}
 		}
 	})
