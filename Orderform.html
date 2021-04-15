@@ -41,24 +41,24 @@
        <table class="table table-striped table-bordered table-hover" id="sample-table">
 		<thead>
 		 <tr>
-				<th width="25px"><label><input type="checkbox" class="ace"><span class="lbl"></span></label></th>
 				<th width="120px">订单编号</th>
+				<th width="130px">产品图片</th>
 				<th width="250px">产品名称</th>
 				<th width="120px">总价</th>
 				<th width="120px">单天价格</th>
 				<th width="120px">租借天数</th>	
-                <th width="120px">订单时间</th>	
-				<th width="120px">到期时间</th>	
+                <th width="120px">订单时间</th>		
 				<th width="120px">押金</th>
 				<th width="70px">状态</th>                
 				<th width="200px">操作</th>
 			</tr>
 		</thead>
 	<tbody>
-     <tr v-for="order,index in orders">
-		<td><label><input type="checkbox" class="ace"><span class="lbl"></span></label></td>
+     <tr v-for="order,index in orders" v-if="order.status <= 9">
 		<!-- 订单编号 -->
 		<td>{{order.orderId}}</td>
+		<!-- 产品图片 -->
+		<td><img :src="order.img"  width="130"/></td>
 		<!-- 产品名称 -->
 		<td class="order_product_name">
 			<u style="cursor:pointer" class="text-primary" onclick="">{{order.productTittle}}</u>
@@ -71,8 +71,6 @@
 		<td>{{order.daySum}}</td>
 		<!-- 订单创建时间 -->
 		<td>{{getTime(order.orderTime)}}</td>
-		<!-- 到期时间 -->
-		<td>{{order.expireTime}}</td>
 		<!-- 所属类型 -->
 		<td>{{order.deposit}}</td>
 		<!-- 状态 -->
@@ -90,9 +88,9 @@
 		</td>
 		<!-- 操作 -->
 		<td>
-		 <a v-if="order.status === 1" onClick="Delivery_stop(this,'10001')"  href="javascript:;" title="发货"  class="btn btn-xs btn-success"><i class="fa fa-cubes bigger-120"></i></a> 
-		 <a v-if="order.status === 5" onClick="Delivery_stop(this,'10001')"  href="javascript:;" title="确认收货"  class="btn btn-xs btn-success"><i class="fa fa-cubes bigger-120"></i></a> 
-		 <a title="订单详细"  @click="orderDetailed(index)"  class="btn btn-xs btn-info order_detailed" ><i class="fa fa-list bigger-120"></i></a> 
+		 <a v-if="order.status === 1" @click="Delivery_stop(this, order.orderId, index)"  href="javascript:;" title="发货"  class="btn btn-xs btn-success"><i class="fa fa-cubes bigger-120"></i></a> 
+		 <a v-if="order.status === 5" @click="confirmReceipt(order.orderId, index)"  href="javascript:;" title="确认收货"  class="btn btn-xs btn-success"><i class="fa fa-cubes bigger-120"></i></a> 
+		 <a v-if="order.status > 0" title="订单详细"  @click="orderDetailed(order.orderId)"  class="btn btn-xs btn-info order_detailed" ><i class="fa fa-list bigger-120"></i></a> 
 		 <a v-if="order.status <= 1" title="删除" href="javascript:;"  onclick="Order_form_del(this,'1')" class="btn btn-xs btn-warning" ><i class="fa fa-trash  bigger-120"></i></a>    
 		</td>
      </tr>
@@ -108,20 +106,23 @@
     <div class="content_style">
   <div class="form-group"><label class="col-sm-2 control-label no-padding-right" for="form-field-1">快递公司 </label>
        <div class="col-sm-9">
-		   <select class="form-control" id="form-field-select-1">
-				<option value="">--选择快递--</option>
-				<option value="1">天天快递</option>
-				<option value="2">圆通快递</option>
-				<option value="3">中通快递</option>
-				<option value="4">顺丰快递</option>
-				<option value="5">申通快递</option>
-				<option value="6">邮政EMS</option>
-				<option value="7">邮政小包</option>
-				<option value="8">韵达快递</option>
+		   <select class="form-control" id="deliver">
+				<option value="0">--选择快递--</option>
+				<option value="SF">顺丰</option>
+				<option value="YIMIDIDA">壹米滴答</option>
+				<option value="HTKY">百世快递</option>
+				<option value="ZTO">中通</option>
+				<option value="STO">申通</option>
+				<option value="YTO">圆通</option>
+				<option value="YD">韵达</option>
+				<option value="YZPY">邮政平邮</option>
+				<option value="EMS">EMS</option>
+				<option value="HHTT">天天</option>
+				<option value="JD">JD</option>
 			</select></div>
 	</div>
    <div class="form-group"><label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 快递号 </label>
-    <div class="col-sm-9"><input type="text" id="form-field-1" placeholder="快递号" class="col-xs-10 col-sm-5" style="margin-left:0px;"></div>
+    <div class="col-sm-9"><input type="text" id="deliverId" placeholder="快递号" class="col-xs-10 col-sm-5" style="margin-left:0px;"></div>
 	</div>	
  </div>
   </div>

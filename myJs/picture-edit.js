@@ -20,12 +20,8 @@ $(function(){
 			formDate.append('businessId', 4)
 			axios.post('http://localhost:8077/getbrand',formDate,config).then((response)=>{
 				this.$set(this, 'brands', response.data['data'])
-							
+				// alert(JSON.stringify(this.product))
 			})
-			let length = this.product.imgList.length
-			for(let i = 0; i < length; i++){
-				this.product.imgList[i] = this.product.imgList[i].slice(1, this.product.imgList[i].length-1)
-			}
 		},
 		methods : {
 			// 选择图片
@@ -96,7 +92,6 @@ $(function(){
 							'Content-Type':'multipart/form-data'
 						}
 					}
-				formDate.append('subTittle', this.product.id)
 				formDate.append('subTittle', subTittle.val())
 				formDate.append('category', category.val())
 				formDate.append('brand', brand.val())

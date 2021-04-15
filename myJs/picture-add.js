@@ -54,10 +54,10 @@ $(function(){
 				   	$("#picture"+id+"_img").prop("src", response.data['data'])
 				   	let flag =  $("#flag"+id).val() === '1'
 				   	if(flag){
-				   		this.$set(this.pictures, id - 1, JSON.stringify(response.data['data']))
+				   		this.$set(this.pictures, id - 1, response.data['data'])
 				   	}else{
 				   		$("#flag"+id).val("1")
-				   		this.pictures.push(JSON.stringify(response.data['data']))
+				   		this.pictures.push(response.data['data'])
 				   	}
 				   })
 				}
@@ -118,7 +118,7 @@ $(function(){
 						formDate1.append('img', pictureEdit.pictures)
 						formDate1.append('pid', response.data['data'])
 						axios.post('http://localhost:8077/addProductImg',formDate1,config).then((response)=>{
-							window.location.href = '../Products_List.html'
+							window.location.href = '../BackstageManager/Products_List.html'
 						})
 					})
 				}

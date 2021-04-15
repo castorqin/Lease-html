@@ -61,6 +61,7 @@ $(function(){
 			},
 			// 编辑商品
 			edit(index){
+				alert(JSON.stringify(this.products[index]))
 				sessionStorage.setItem('product', JSON.stringify(this.products[index]))
 				window.location.href = "../BackstageManager/picture-edit.html"
 			},

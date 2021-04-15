@@ -38,7 +38,6 @@
  <div class="brand_detailed">
   <div class="brand_info clearfix">
    <div class="title_brand">品牌信息</div>
-   <form>
     <ul class="Info_style clearfix">
      <li><label class="label_name">品牌名称：</label> <span class="name">{{brand.name}}</span></li>
       <li>
@@ -48,19 +47,18 @@
 		</li>
       <li><label class="label_name">所属国家：</label><span class="name">{{brand.placeOrigin}}</span></li>
       <li><label class="label_name">品牌编号：</label><span class="name">{{brand.id}}</span></li>
-      <li><label class="label_name">添加时间：</label><span class="name">{{brand.creatTime}}</span></li>
+      <li><label class="label_name">添加时间：</label><span class="name">{{getTime(brand.creatTime)}}</span></li>
       <li>
 			<label class="label_name">状&nbsp;&nbsp;&nbsp;&nbsp;态：</label>
 			<span class="name" v-if="brand.status == 1">启用</span>
 			<span class="name" v-else >禁用</span>
 	  </li>
-      <li class="b_Introduce"><label class="label_name">品牌介绍：</label><span class="name">{{brand.describe}}</span></li>
+      <li class="b_Introduce"><label class="label_name">品牌介绍：</label><span>{{brand.describe}}</span></li>
     </ul>
     <div class="brand_logo">
       <img :src="brand.logo"  width="120px" height="60px"/>
       <p class="name">{{brand.name}}</p>
     </div>
-   </form>
    </div>
  </div>
  <!--品牌商品-->

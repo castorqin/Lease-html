@@ -38,7 +38,7 @@
 	<form class="form form-horizontal" id="form-article-add">
 		<div class="clearfix cl">
 	     <label class="form-label col-2"><span class="c-red">*</span>商品名称：</label>
-		 <div class="formControls col-10"><input id="subTittle" type="text" class="input-text" :value="product.productTitle"></div>
+		 <div class="formControls col-10"><input id="subTittle" type="text" class="input-text" :value="product.subTittle"></div>
 		</div>
 		<div class=" clearfix cl">
 			<div class="Add_p_s">
@@ -49,7 +49,10 @@
 							<option value="0">请选择</option>
 							<option value="1">手机</option>
 							<option value="2">电脑</option>
-							<option value="3">相机</option>
+							<option value="3">平板电脑</option>
+							<option value="4">相机</option>
+							<option value="5">耳机</option>
+							<option value="6">其他</option>
 						</select>
 					</span>
 				</div>
@@ -70,13 +73,20 @@
 			 <div class="formControls col-2">
 			 	<span class="select-box">
 			 		<select class="select" id="quality">
-			 			<option value="0">请选择</option>
-			 			<option value="1">十成新</option>
-			 			<option value="2">九成新</option>
-			 			<option value="3">八成新</option>
-						<option value="4">七成新</option>
-						<option value="5">六成新</option>
-						<option value="6">五成新</option>
+			 			<option value="0" v-if="product.quality === '0'" selected >请选择</option>
+						<option value="0" v-else >请选择</option>
+			 			<option value="1" v-if="product.quality === '1'" selected >十成新</option>
+						<option value="1" v-else >十成新</option>
+			 			<option value="2" v-if="product.quality === '2'" selected >九成新</option>
+						<option value="2" v-else >九成新</option>
+			 			<option value="3" v-if="product.quality === '3'" selected >八成新</option>
+						<option value="3" v-else >八成新</option>
+						<option value="4" v-if="product.quality === '4'" selected >七成新</option>
+						<option value="4" v-else >七成新</option>
+						<option value="5" v-if="product.quality === '5'" selected >六成新</option>
+						<option value="5" v-else >六成新</option>
+						<option value="6" v-if="product.quality === '6'" selected >五成新</option>
+						<option value="6" v-else >五成新</option>
 			 		</select>
 			 	</span>
 			 </div>
@@ -128,7 +138,7 @@
 				<!-- 图片 -->
 				<div class="productImg .col-xs-4" id="picture1">
 					<div class="productImg_div">
-						<label for="picture1File"><img :src="product.imgList[0]" title="更换图片" id="picture1_img"></label>
+						<label for="picture1File"><img :src="product.imgList[0].url" title="更换图片" id="picture1_img"></label>
 						<!-- <div class="productDelete" @click="deletePicture(picture.pictureId)"><div title="删除图片">删除</div></div> -->
 					</div>
 					<input id="picture1File" type="file" style="display: none;" @change="selectPicture(1)">
@@ -136,7 +146,7 @@
 				</div>	
 				<div class="productImg .col-xs-4" id="picture2">
 					<div class="productImg_div">
-						<label for="picture2File"><img :src="product.imgList[1]" title="更换图片" id="picture2_img"></label>
+						<label for="picture2File"><img :src="product.imgList[1].url" title="更换图片" id="picture2_img"></label>
 						<!-- <div class="productDelete" @click="deletePicture(picture.pictureId)"><div title="删除图片">删除</div></div> -->
 					</div>
 					<input id="picture2File" type="file" style="display: none;" @change="selectPicture(2)">
@@ -144,7 +154,7 @@
 				</div>
 				<div class="productImg .col-xs-4" id="picture3">
 					<div class="productImg_div">
-						<label for="picture3File"><img :src="product.imgList[2]" title="更换图片" id="picture3_img"></label>
+						<label for="picture3File"><img :src="product.imgList[2].url" title="更换图片" id="picture3_img"></label>
 						<!-- <div class="productDelete" @click="deletePicture(picture.pictureId)"><div title="删除图片">删除</div></div> -->
 					</div>
 					<input id="picture3File" type="file" style="display: none;" @change="selectPicture(3)">
@@ -152,7 +162,7 @@
 				</div>
 				<div class="productImg .col-xs-4" id="picture4">
 					<div class="productImg_div">
-						<label for="picture4File"><img :src="product.imgList[3]" title="更换图片" id="picture4_img"></label>
+						<label for="picture4File"><img :src="product.imgList[3].url" title="更换图片" id="picture4_img"></label>
 						<!-- <div class="productDelete" @click="deletePicture(picture.pictureId)"><div title="删除图片">删除</div></div> -->
 					</div>
 					<input id="picture4File" type="file" style="display: none;" @change="selectPicture(4)">
@@ -160,7 +170,7 @@
 				</div>
 				<div class="productImg .col-xs-4" id="picture5">
 					<div class="productImg_div">
-						<label for="picture5File"><img :src="product.imgList[4]" title="更换图片" id="picture5_img"></label>
+						<label for="picture5File"><img :src="product.imgList[4].url" title="更换图片" id="picture5_img"></label>
 						<!-- <div class="productDelete" @click="deletePicture(picture.pictureId)"><div title="删除图片">删除</div></div> -->
 					</div>
 					<input id="picture5File" type="file" style="display: none;" @change="selectPicture(5)">

@@ -40,19 +40,19 @@
      <div class="Info_style clearfix">
         <div class="col-xs-3">  
          <label class="label_name" for="form-field-2"> 收件人姓名： </label>
-         <div class="o_content">{{order.receiverName}}</div>
+         <div class="o_content">{{order.name}}</div>
         </div>
         <div class="col-xs-3">  
          <label class="label_name" for="form-field-2"> 收件人电话： </label>
-         <div class="o_content">{{order.receiverPhone}}</div>
+         <div class="o_content">{{order.phone}}</div>
         </div>
          <div class="col-xs-3">  
          <label class="label_name" for="form-field-2"> 收件地邮编： </label>
-         <div class="o_content">{{order.postalCode}}</div>
+         <div class="o_content">{{order.postcode}}</div>
         </div>
          <div class="col-xs-3">  
          <label class="label_name" for="form-field-2"> 收件地址： </label>
-         <div class="o_content">{{order.receiveAddress}}</div>
+         <div class="o_content">{{order.address}}</div>
         </div>
      </div>
     </div>
@@ -85,22 +85,23 @@
         </div>
         <div class="col-xs-3">  
          <label class="label_name" for="form-field-2"> 订单状态： </label>
-         <div class="o_content" v-if="order.status === '0'" style="color: #E5E5E5;">待发货</div>
-		 <div class="o_content" v-else-if="order.status === '1'" style="color: lightgreen;">已发货</div>
-		 <div class="o_content" v-else-if="order.status === '2'" style="color: lightgreen;">对方已收货</div>
-		 <div class="o_content" v-else-if="order.status === '3'" style="color: #E5E5E5;">待对方退回</div>
-		 <div class="o_content" v-else-if="order.status === '4'" style="color: #2ECEE7;">对方已退回</div>
-		 <div class="o_content" v-else-if="order.status === '5'" style="color: #2ECEE7;">已收货</div>
-		 <div class="o_content" v-else-if="order.status === '6'" style="color: #E17B67;">待评价</div>
-		 <div class="o_content" v-else-if="order.status === '7'" style="color: goldenrod;">已被买断√</div>
+         <div class="o_content" v-if="order.orderStatus === 1" style="color: #E5E5E5;">待发货</div>
+		 <div class="o_content" v-else-if="order.orderStatus === 2" style="color: lightgreen;">已发货</div>
+		 <div class="o_content" v-else-if="order.orderStatus === 3" style="color: lightgreen;">对方已收货</div>
+		 <div class="o_content" v-else-if="order.orderStatus === 4" style="color: #E5E5E5;">待对方退回</div>
+		 <div class="o_content" v-else-if="order.orderStatus === 5" style="color: #2ECEE7;">对方已退回</div>
+		 <div class="o_content" v-else-if="order.orderStatus === 6" style="color: #2ECEE7;">已收货</div>
+		 <div class="o_content" v-else-if="order.orderStatus === 7" style="color: #E17B67;">待评价</div>
+		 <div class="o_content" v-else-if="order.orderStatus === 8" style="color: goldenrod;">已被买断√</div>
         </div>
         <div class="col-xs-3">  
          <label class="label_name" for="form-field-2"> 生成日期： </label>
-         <div class="o_content">{{getTime(order.orderTime)}}</div>
+         <div class="o_content">{{getTime(order.insertTime)}}</div>
         </div>
 		<div class="col-xs-3">
 		 <label class="label_name" for="form-field-2"> 到期日期： </label>
-		 <div class="o_content">{{order.expireTime}}</div>
+		 <div class="o_content" v-if="order.orderStatus >= 3">{{order.expireTime}}</div>
+		 <div class="o_content" v-else >待定......</div>
 		</div>
 		<div class="col-xs-3">
 		 <label class="label_name" for="form-field-2"> 租借押金： </label>
@@ -112,14 +113,24 @@
 		</div>
 		<div class="col-xs-3">
 		 <label class="label_name" for="form-field-2"> 租借天数： </label>
-		 <div class="o_content" style="font-weight: bold; color: red;">{{order.daySum}}</div>
+		 <div class="o_content" style="font-weight: bold; color: red;">{{order.day}}</div>
 		</div>
          <div class="col-xs-3">  
          <label class="label_name" for="form-field-2"> 快递名称： </label>
-         <div class="o_content">{{order.courier}}</div>
+         <div class="o_content" v-if="order.logisticsType === 'SF'">顺丰</div>
+		 <div class="o_content" v-if="order.logisticsType === 'YIMIDIDA'">壹米滴答</div>
+		 <div class="o_content" v-if="order.logisticsType === 'HTKY'">百世快递</div>
+		 <div class="o_content" v-if="order.logisticsType === 'ZTO'">中通</div>
+		 <div class="o_content" v-if="order.logisticsType === 'STO'">申通</div>
+		 <div class="o_content" v-if="order.logisticsType === 'YTO'">圆通</div>
+		 <div class="o_content" v-if="order.logisticsType === 'YD'">韵达</div>
+		 <div class="o_content" v-if="order.logisticsType === 'YZPY'">邮政平邮</div>
+		 <div class="o_content" v-if="order.logisticsType === 'EMS'">EMS</div>
+		 <div class="o_content" v-if="order.logisticsType === 'HHTT'">天天</div>
+		 <div class="o_content" v-if="order.logisticsType === 'JD'">JD</div>
         </div>
         </div>
-      <div class="Total_m_style"><span class="Total_price">总价：<b>{{order.totalPrice}}</b>元</span></div>
+      <div class="Total_m_style"><span class="Total_price">总价：<b>{{order.money}}</b>元</span></div>
     </div>
     
     <!--物流信息-->
@@ -168,7 +179,7 @@
     </div>
     </div>
 <div class="Button_operation">
-				<button onclick="article_save_submit();" class="btn btn-primary radius" type="submit"><i class="icon-save "></i>返回上一步</button>
+				<button @click="back()" class="btn btn-primary radius"><i class="icon-save "></i>返回上一步</button>
 				
 				<button onclick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
 			</div>

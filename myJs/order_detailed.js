@@ -30,6 +30,9 @@ $(function(){
 			}
 		},
 		methods : {
+			back(){
+				history.go(-1)
+			},
 			getTime(timeStampt){
 				 let date = new Date(timeStampt);
 				 let y = date.getFullYear();

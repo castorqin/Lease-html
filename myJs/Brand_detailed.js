@@ -100,38 +100,20 @@ $(function(){
 						}
 					})
 				},
-				// 批量删除商品
-				batchDelete(){
-					layer.confirm('确认要删除吗？',function(index){
-						layer.msg('已删除!',{icon:1,time:1000});
-						let selectedProducts = [];
-						let productInformations = $(".productInformation")
-						let len = productInformations.length
-						for(let i = 0; i < len; i++){
-							if(productInformations[i].children[0].children[0].children[0].checked){
-								let id = productInformations[i].children[1].innerText
-								let products = brandDetailed.products
-								for(let j in products){
-									// 删除对应商品
-									if(products[j].id === id){
-										$('#' + id).remove()
-										// let formDate = new FormData()
-										// formDate.append('id', id)
-										// formDate.append('status', newStatus)
-										// let config = {
-										// 		headers: {
-										// 			'Content-Type':'multipart/form-data'
-										// 		}
-										// 	}
-										// axios.post('',formDate,config).then((response)=>{
-											
-										// })
-									}
-								}
-								selectedProducts.push(id)
-							}
-						}
-					})
+				getTime(timeStampt){
+					 let date = new Date(timeStampt);
+					 let y = date.getFullYear();
+					 let m = date.getMonth() + 1;
+					 m = m < 10 ? ('0' + m) : m;
+					 let d = date.getDate();
+					 d = d < 10 ? ('0' + d) : d;
+					 let h = date.getHours();
+					 h = h < 10 ? ('0' + h) : h;
+					 let minute = date.getMinutes();
+					 let second = date.getSeconds();
+					 minute = minute < 10 ? ('0' + minute) : minute;
+					 second = second < 10 ? ('0' + second) : second;
+					 return y + '-' + m + '-' + d+' '+h+':'+minute+':'+second;
 				}
 			
 		}

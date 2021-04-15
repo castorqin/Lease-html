@@ -76,7 +76,7 @@
           <td><a name="Brand_detailed.html" style="cursor:pointer" class="text-primary brond_name" @click="brandDetailed(index)" :title="brand.brandName">{{brand.name}}</a></td>
           <td>{{brand.placeOrigin}}</td>
           <td class="text-l">{{brand.describe}}</td>
-          <td>{{brand.createTime}}</td>
+          <td>{{getTime(brand.creatTime)}}</td>
           <td class="td-status">
 			  <span v-if="brand.status === 1" class="label label-success radius">已启用</span>
 			  <span v-else-if="brand.status === -1" class="label label-danger radius">已删除</span>
